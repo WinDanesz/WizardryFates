@@ -4,6 +4,7 @@ import com.windanesz.wizardryfates.Settings;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.event.SpellCastEvent;
+import electroblob.wizardry.registry.Spells;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.SpellModifiers;
 import net.minecraft.client.resources.I18n;
@@ -21,14 +22,20 @@ public class WFEventHandler {
 	public static void onSpellCastEventPre(SpellCastEvent.Pre event) {
 		if (event.getCaster() instanceof EntityPlayer) {
 
-			if (event.getSource() == SpellCastEvent.Source.SCROLL && Settings.settings.allow_other_scrolls) {
+			if (event.getSource() == SpellCastEvent.Source.SCROLL && Settings.settings.allow_other_scrolls || event.getSource() == SpellCastEvent.Source.OTHER) {
 				return;
 			}
 
 			Spell spell = event.getSpell();
 			Element element = spell.getElement();
+
+			if (element == Element.MAGIC || spell == Spells.none) {
+				return;
+			}
+
 			EntityPlayer player = (EntityPlayer) event.getCaster();
 			Element discipline = Discipline.getPlayerDiscipline((EntityPlayer) event.getCaster());
+
 			if (element != discipline) {
 
 				WizardData data = WizardData.get(player);
