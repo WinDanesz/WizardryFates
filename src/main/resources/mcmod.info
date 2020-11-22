@@ -2,7 +2,7 @@
     "modid": "wizardryfates",
     "name": "Wizardry Fates by Dan",
     "description": "Wizardry Fates is a small addon for Electroblob's wizardry which allows locking down spellcasting abilities to a certain element for each player, giving them a 'Discipline' (= element specialization). Mainly recommended for players who want to add some challenge to the game or roleplay servers.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "mcversion": "1.12.2",
     "url": "https://www.curseforge.com/minecraft/mc-mods/wizardry-fates",
     "authorList": ["WinDanesz"],

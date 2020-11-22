@@ -22,6 +22,7 @@ public class WFEventHandler {
 	public static void onSpellCastEventPre(SpellCastEvent.Pre event) {
 		if (event.getCaster() instanceof EntityPlayer) {
 
+			// prevent casting scrolls if disabled in config, allow casting 'OTHER' sources
 			if (event.getSource() == SpellCastEvent.Source.SCROLL && Settings.settings.allow_other_scrolls || event.getSource() == SpellCastEvent.Source.OTHER) {
 				return;
 			}
@@ -29,6 +30,7 @@ public class WFEventHandler {
 			Spell spell = event.getSpell();
 			Element element = spell.getElement();
 
+			// don't trigger for the magic element or none spells (this also currently allows casting Ancient element spells from Ancient Spellcraft)
 			if (element == Element.MAGIC || spell == Spells.none) {
 				return;
 			}

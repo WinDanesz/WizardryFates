@@ -1,5 +1,6 @@
 package com.windanesz.wizardryfates.handler;
 
+import com.windanesz.wizardryfates.WizardryFates;
 import com.windanesz.wizardryfates.registry.Sounds;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.data.IStoredVariable;
@@ -70,8 +71,9 @@ public class Discipline {
 	}
 
 	public static Element getRandomElement() {
-		int index = getRandomNumberInRange(1, SIZE);
-		return ELEMENTS.get(index);
+		List<Element> elements = WizardryFates.settings.elements;
+		int index = getRandomNumberInRange(0, elements.size());
+		return elements.get(index);
 	}
 
 	public static int getRandomNumberInRange(int min, int max) {
