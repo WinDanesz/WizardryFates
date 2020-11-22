@@ -19,16 +19,16 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
-public class CommandSetDiscipline extends CommandBase {
+public class CommandAddSubDiscipline extends CommandBase {
 
-	public static final String COMMAND = "setdiscipline";
+	public static final String COMMAND = "addsubdiscipline";
 
 	public String getName() {
 		return COMMAND;
 	}
 
 	@Override
-	public int getRequiredPermissionLevel(){
+	public int getRequiredPermissionLevel() {
 		return 2;
 	}
 
@@ -42,9 +42,9 @@ public class CommandSetDiscipline extends CommandBase {
 	}
 
 	@Override
-	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] arguments, BlockPos pos){
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] arguments, BlockPos pos) {
 
-		switch(arguments.length){
+		switch (arguments.length) {
 			case 1:
 				return getListOfStringsMatchingLastWord(arguments, server.getOnlinePlayerNames());
 			case 2:
@@ -60,6 +60,14 @@ public class CommandSetDiscipline extends CommandBase {
 			throw new WrongUsageException(getUsage(sender));
 		}
 
+		DisciplineMode mode = DisciplineMode.getActiveMode();
+		if (mode != DisciplineMode.SUB_DISCIPLINE_MODE) {
+			sender.sendMessage(new TextComponentTranslation("commands.wizardryfates:addsubdiscipline.incorrect_mode").setStyle((new Style()).setColor(TextFormatting.RED)));
+			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:current_global_discipline_mode", mode));
+			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:commands_to_use", ("/setdiscipline, /removediscipline")).setStyle((new Style()).setColor(TextFormatting.GREEN)));
+			return;
+		}
+
 		EntityPlayer targetPlayer = getPlayer(server, sender, arguments[0]);
 		Element newElement;
 		try {
@@ -69,6 +77,7 @@ public class CommandSetDiscipline extends CommandBase {
 			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:invalid_element_name").setStyle((new Style()).setColor(TextFormatting.RED)));
 			return;
 		}
+
 		Discipline discipline = DisciplineUtils.getPlayerDisciplines(targetPlayer);
 
 		if (discipline.isMagiclessPlayer()) {
@@ -88,8 +97,7 @@ public class CommandSetDiscipline extends CommandBase {
 
 		EntityPlayer senderPlayer = sender instanceof EntityPlayer ? (EntityPlayer) sender : null;
 
-		boolean purgeExisting = DisciplineMode.getActiveMode() != DisciplineMode.MULTI_DISCIPLINE_MODE;
-		if (DisciplineUtils.addPrimaryDiscipline(targetPlayer, newElement, purgeExisting, senderPlayer)) {
+		if (DisciplineUtils.addSecondaryDiscipline(targetPlayer, newElement, false, senderPlayer)) {
 			TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".execute",
 					targetPlayer.getDisplayName(),
 					Utils.getElementWithStyleFormat(newElement));

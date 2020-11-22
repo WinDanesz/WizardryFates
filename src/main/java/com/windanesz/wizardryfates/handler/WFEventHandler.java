@@ -1,67 +1,79 @@
 package com.windanesz.wizardryfates.handler;
 
 import com.windanesz.wizardryfates.Settings;
+import com.windanesz.wizardryfates.item.ItemDisciplineBook;
+import com.windanesz.wizardryfates.registry.WizardryFatesItems;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.data.WizardData;
 import electroblob.wizardry.event.SpellCastEvent;
-import electroblob.wizardry.registry.Spells;
 import electroblob.wizardry.spell.Spell;
 import electroblob.wizardry.util.SpellModifiers;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 @Mod.EventBusSubscriber
 public class WFEventHandler {
 
 	private WFEventHandler() {} // No instances!
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGH) // Apply before Forfeits
 	public static void onSpellCastEventPre(SpellCastEvent.Pre event) {
 		if (event.getCaster() instanceof EntityPlayer) {
 
-			// prevent casting scrolls if disabled in config, allow casting 'OTHER' sources
-			if (event.getSource() == SpellCastEvent.Source.SCROLL && Settings.settings.allow_other_scrolls || event.getSource() == SpellCastEvent.Source.OTHER) {
-				return;
-			}
-
+			EntityPlayer player = (EntityPlayer) event.getCaster();
+			Discipline discipline = DisciplineUtils.getPlayerDisciplines((EntityPlayer) event.getCaster());
 			Spell spell = event.getSpell();
 			Element element = spell.getElement();
 
-			// don't trigger for the magic element or none spells (this also currently allows casting Ancient element spells from Ancient Spellcraft)
-			if (element == Element.MAGIC || spell == Spells.none) {
-				return;
-			}
-
-			EntityPlayer player = (EntityPlayer) event.getCaster();
-			Element discipline = Discipline.getPlayerDiscipline((EntityPlayer) event.getCaster());
-
-			if (element != discipline) {
-
-				WizardData data = WizardData.get(player);
-				if (data != null) {
-					if (!data.hasSpellBeenDiscovered(spell)) {
-						if (!player.world.isRemote) {
-							player.sendStatusMessage(new TextComponentTranslation(I18n.format("gui.wizardryfates:unknown_other_element")), true);
-						}
-					} else if (!player.world.isRemote) {
-						player.sendStatusMessage(new TextComponentTranslation(I18n.format("gui.wizardryfates:failed_other_element")), true);
-					}
+			// Check if spell cast is possible
+			if (!discipline.canPlayerCastThis(spell, event.getSource())) {
+				if (!player.world.isRemote) {
+					player.sendStatusMessage(new TextComponentTranslation("gui.wizardryfates:spellcast_failed"), true);
 				}
-
 				event.setCanceled(true);
 			}
 
-			if (element == discipline && Settings.settings.discipline_potency_bonus != 0D) {
+			// Apply potency bonus
+			if (discipline.primaryDisciplines.contains(element)) {
+				// apply primary discipline modifiers
+				if (Settings.settings.discipline_potency_bonus != 0) {
+					SpellModifiers modifiers = event.getModifiers();
+					float potency = modifiers.get(SpellModifiers.POTENCY);
+					modifiers.set(SpellModifiers.POTENCY, potency + (Settings.settings.discipline_potency_bonus * 0.01f), false);
+				}
+			} else if (Settings.settings.sub_discipline_potency_bonus != 0 && discipline.secondaryDisciplines.contains(element)) {
+				// apply sub-discipline modifiers
 				SpellModifiers modifiers = event.getModifiers();
-				modifiers.set(SpellModifiers.POTENCY, 1f + Settings.settings.discipline_potency_bonus, false);
-				modifiers = event.getModifiers();
+				float potency = modifiers.get(SpellModifiers.POTENCY);
+				modifiers.set(SpellModifiers.POTENCY, potency + (Settings.settings.sub_discipline_potency_bonus * 0.01f), false);
 			}
-
 		}
-
 	}
 
+	@SubscribeEvent
+	public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+
+		if (Settings.settings.book_of_fates_in_starter_inventory) {
+			WizardData data = WizardData.get(event.player);
+			if (data != null) {
+				Boolean disciplineTag = data.getVariable(ItemDisciplineBook.RECEIVED_FATES_BOOK);
+
+				if (disciplineTag == null || !disciplineTag) {
+					ItemStack bookStack = new ItemStack(WizardryFatesItems.book_of_fates);
+
+					if (!event.player.world.isRemote && !event.player.addItemStackToInventory(bookStack)) {
+						event.player.dropItem(bookStack, false);
+					}
+
+					data.setVariable(ItemDisciplineBook.RECEIVED_FATES_BOOK, Boolean.TRUE);
+					data.sync();
+				}
+			}
+		}
+	}
 }

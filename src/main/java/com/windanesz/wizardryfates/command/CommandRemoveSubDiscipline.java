@@ -2,7 +2,6 @@ package com.windanesz.wizardryfates.command;
 
 import com.windanesz.wizardryfates.WizardryFates;
 import com.windanesz.wizardryfates.handler.Discipline;
-import com.windanesz.wizardryfates.handler.DisciplineMode;
 import com.windanesz.wizardryfates.handler.DisciplineUtils;
 import com.windanesz.wizardryfates.handler.Utils;
 import electroblob.wizardry.constants.Element;
@@ -10,18 +9,16 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
-public class CommandSetDiscipline extends CommandBase {
+public class CommandRemoveSubDiscipline extends CommandBase {
 
-	public static final String COMMAND = "setdiscipline";
+	public static final String COMMAND = "removesubdiscipline";
 
 	public String getName() {
 		return COMMAND;
@@ -60,43 +57,23 @@ public class CommandSetDiscipline extends CommandBase {
 			throw new WrongUsageException(getUsage(sender));
 		}
 
-		EntityPlayer targetPlayer = getPlayer(server, sender, arguments[0]);
-		Element newElement;
-		try {
-			newElement = Utils.getElementFromName(arguments[1]);
-		}
-		catch (IllegalArgumentException e) {
-			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:invalid_element_name").setStyle((new Style()).setColor(TextFormatting.RED)));
-			return;
-		}
+		EntityPlayerMP targetPlayer = getPlayer(server, sender, arguments[0]);
+		Element elementToRemove = Utils.getElementFromName(arguments[1].toLowerCase());
+
 		Discipline discipline = DisciplineUtils.getPlayerDisciplines(targetPlayer);
 
-		if (discipline.isMagiclessPlayer()) {
-			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:cannot_add_discipline_to_magicless_player"));
+		if (!discipline.secondaryDisciplines.contains(elementToRemove)) {
+			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:cannot_remove_unassigned_discipline"));
 			return;
 		}
 
-		if (discipline.primaryDisciplines.contains(newElement)) {
-			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_primary"));
-			return;
-		}
-
-		if (discipline.secondaryDisciplines.contains(newElement)) {
-			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_sub_discipline"));
-			return;
-		}
-
-		EntityPlayer senderPlayer = sender instanceof EntityPlayer ? (EntityPlayer) sender : null;
-
-		boolean purgeExisting = DisciplineMode.getActiveMode() != DisciplineMode.MULTI_DISCIPLINE_MODE;
-		if (DisciplineUtils.addPrimaryDiscipline(targetPlayer, newElement, purgeExisting, senderPlayer)) {
+		if (DisciplineUtils.removeSubDiscipline(targetPlayer, elementToRemove)) {
 			TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".execute",
 					targetPlayer.getDisplayName(),
-					Utils.getElementWithStyleFormat(newElement));
+					Utils.getElementWithStyleFormat(elementToRemove));
 			sender.sendMessage(textComponentTranslation);
 		} else {
-			TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".failure",
-					targetPlayer.getDisplayName(), Utils.getElementWithStyleFormat(newElement));
+			TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".failure", targetPlayer.getDisplayName(), elementToRemove);
 			sender.sendMessage(textComponentTranslation);
 		}
 	}

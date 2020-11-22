@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "wizardryfates:items/scroll_ancient"
+    }
+}

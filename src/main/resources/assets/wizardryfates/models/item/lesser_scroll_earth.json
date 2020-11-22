@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "wizardryfates:items/scroll_earth"
+    }
+}

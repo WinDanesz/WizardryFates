@@ -1,7 +1,15 @@
 package com.windanesz.wizardryfates;
 
+import com.windanesz.wizardryfates.command.CommandAddSubDiscipline;
+import com.windanesz.wizardryfates.command.CommandGetDiscipline;
+import com.windanesz.wizardryfates.command.CommandRemoveDiscipline;
+import com.windanesz.wizardryfates.command.CommandRemoveSubDiscipline;
 import com.windanesz.wizardryfates.command.CommandSetDiscipline;
-import com.windanesz.wizardryfates.handler.Discipline;
+import com.windanesz.wizardryfates.command.CommandSetMagicless;
+import com.windanesz.wizardryfates.handler.DisciplineUtils;
+import com.windanesz.wizardryfates.integration.FatesASIntegration;
+import com.windanesz.wizardryfates.item.ItemDisciplineBook;
+import com.windanesz.wizardryfates.packet.FatesPacketHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -9,6 +17,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
@@ -18,7 +27,7 @@ public class WizardryFates {
 
 	public static final String MODID = "wizardryfates";
 	public static final String NAME = "Wizardry Fates by Dan";
-	public static final String VERSION = "1.0.1";
+	public static final String VERSION = "2.0.0";
 	public static final String MC_VERSION = "[1.12.2]";
 
 	public static final Random rand = new Random();
@@ -42,22 +51,30 @@ public class WizardryFates {
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		settings = new Settings();
-
+		FatesASIntegration.init();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 
 		// register WizardData attributes
-		Discipline.init();
+		DisciplineUtils.init();
+		ItemDisciplineBook.init();
 
 		MinecraftForge.EVENT_BUS.register(instance); // Since there's already an instance we might as well use it
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new FatesGuiHandler());
+		FatesPacketHandler.initPackets();
+
 	}
 
 	@EventHandler
-	public void serverStarting(FMLServerStartingEvent event){
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new CommandGetDiscipline());
 		event.registerServerCommand(new CommandSetDiscipline());
-
+		event.registerServerCommand(new CommandAddSubDiscipline());
+		event.registerServerCommand(new CommandSetMagicless());
+		event.registerServerCommand(new CommandRemoveDiscipline());
+		event.registerServerCommand(new CommandRemoveSubDiscipline());
 	}
 
 }

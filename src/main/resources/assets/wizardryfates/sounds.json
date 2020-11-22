@@ -1,3 +1,6 @@
 {
-    "discipline.extinguish": {"category": "palyer", "sounds": ["wizardryfates:discipline_revelation"]}
+    "discipline_book_use":          { "category": "player", "sounds": [ "wizardryfates:discipline_book_use" ]},
+    "discipline_scroll_use":        { "category": "player", "sounds": [ "wizardryfates:discipline_scroll_use" ]},
+    "lesser_discipline_scroll_use": { "category": "player", "sounds": [ "wizardryfates:lesser_discipline_scroll_use" ]}
 }
+

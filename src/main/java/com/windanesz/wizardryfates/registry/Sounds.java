@@ -9,6 +9,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class Sounds {
 
 	public static final SoundEvent DISCIPLINE_REVELATION = createSound("discipline_revelation");
+	public static final SoundEvent DISCIPLINE_BOOK_USE = createSound("discipline_book_use");
+	public static final SoundEvent LESSER_DISCIPLINE_SCROLL_USE = createSound("lesser_discipline_scroll_use");
+	public static final SoundEvent DISCIPLINE_SCROLL_USE = createSound("discipline_scroll_use");
 
 	public static SoundEvent createSound(String name) {
 		return createSound(WizardryFates.MODID, name);
@@ -25,5 +28,8 @@ public class Sounds {
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<SoundEvent> event) {
 		event.getRegistry().register(DISCIPLINE_REVELATION);
+		event.getRegistry().register(DISCIPLINE_BOOK_USE);
+		event.getRegistry().register(LESSER_DISCIPLINE_SCROLL_USE);
+		event.getRegistry().register(DISCIPLINE_SCROLL_USE);
 	}
 }

@@ -26,7 +26,7 @@ repositories {
 
 }
 
-version = "1.0.1"
+version = "2.0.0"
 group = "com.windanesz.wizardryfates" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "wizardryfates"
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
