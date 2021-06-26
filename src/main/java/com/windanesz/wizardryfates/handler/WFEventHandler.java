@@ -1,6 +1,7 @@
 package com.windanesz.wizardryfates.handler;
 
 import com.windanesz.wizardryfates.Settings;
+import com.windanesz.wizardryfates.integration.FatesReskillableIntegration;
 import com.windanesz.wizardryfates.item.ItemDisciplineBook;
 import com.windanesz.wizardryfates.registry.WizardryFatesItems;
 import electroblob.wizardry.constants.Element;
@@ -44,13 +45,24 @@ public class WFEventHandler {
 				if (Settings.settings.discipline_potency_bonus != 0) {
 					SpellModifiers modifiers = event.getModifiers();
 					float potency = modifiers.get(SpellModifiers.POTENCY);
-					modifiers.set(SpellModifiers.POTENCY, potency + (Settings.settings.discipline_potency_bonus * 0.01f), false);
+					float bonus = Settings.settings.discipline_potency_bonus * 0.01f;
+					if (FatesReskillableIntegration.enabled()) {
+						float skillPercent = FatesReskillableIntegration.getProgressPercent(player);
+						bonus *= skillPercent;
+					}
+					modifiers.set(SpellModifiers.POTENCY, potency + bonus, false);
 				}
 			} else if (Settings.settings.sub_discipline_potency_bonus != 0 && discipline.secondaryDisciplines.contains(element)) {
 				// apply sub-discipline modifiers
+
 				SpellModifiers modifiers = event.getModifiers();
 				float potency = modifiers.get(SpellModifiers.POTENCY);
-				modifiers.set(SpellModifiers.POTENCY, potency + (Settings.settings.sub_discipline_potency_bonus * 0.01f), false);
+				float bonus = Settings.settings.sub_discipline_potency_bonus * 0.01f;
+				if (FatesReskillableIntegration.enabled()) {
+					float skillPercent = FatesReskillableIntegration.getProgressPercent(player);
+					bonus *= skillPercent;
+				}
+				modifiers.set(SpellModifiers.POTENCY, potency + bonus, false);
 			}
 		}
 	}

@@ -26,7 +26,7 @@ repositories {
 
 }
 
-version = "2.0.0"
+version = "2.1.0"
 group = "com.windanesz.wizardryfates" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "wizardryfates"
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -49,6 +49,9 @@ minecraft {
 
 dependencies {
     deobfCompile "electroblobs-wizardry:ElectroblobsWizardry:4.3:MC${mc_version}"
+
+    //https://maven.blamejared.com/codersafterdark/reskillable/Reskillable/
+    deobfCompile "codersafterdark.reskillable:Reskillable:${project.mc_version}-${project.reskillable_version}"
 }
 
 processResources {

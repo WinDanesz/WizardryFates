@@ -1,5 +1,6 @@
 package com.windanesz.wizardryfates.command;
 
+import com.windanesz.wizardryfates.Settings;
 import com.windanesz.wizardryfates.WizardryFates;
 import com.windanesz.wizardryfates.handler.Discipline;
 import com.windanesz.wizardryfates.handler.DisciplineMode;
@@ -88,7 +89,7 @@ public class CommandSetDiscipline extends CommandBase {
 
 		EntityPlayer senderPlayer = sender instanceof EntityPlayer ? (EntityPlayer) sender : null;
 
-		boolean purgeExisting = DisciplineMode.getActiveMode() != DisciplineMode.MULTI_DISCIPLINE_MODE;
+		boolean purgeExisting = DisciplineMode.getActiveMode() != DisciplineMode.MULTI_DISCIPLINE_MODE || (!(DisciplineMode.getActiveMode() == DisciplineMode.SUB_DISCIPLINE_MODE && Settings.settings.max_multi_disciplines_count > 1));
 		if (DisciplineUtils.addPrimaryDiscipline(targetPlayer, newElement, purgeExisting, senderPlayer)) {
 			TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".execute",
 					targetPlayer.getDisplayName(),

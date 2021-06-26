@@ -175,6 +175,14 @@ public class Settings {
 		@Config.RequiresMcRestart
 		public boolean ancient_spellcraft_integration = true;
 
+		@Config.Name("Reskillable Integration")
+		@Config.Comment("If the integration is active, the discipline potency bonuses are calculated based on the player's magic skill in Reskillable. "
+				+ "\n For example this means that if you have a \"Discipline Potency Bonus\" set to 30 and the maximum level of the magic skill of Reskillable is 32,"
+				+ "You'll get the 30 Potency bonus when you reach lvl 30 in your magic skill, and a fraction of the total potency bonus before that, depending on your magic skill."
+				+ "\n E.g., for a level 12 magic skill, you'll get (12 / 32) * 30 = 11,25 potency bonus.")
+		@Config.RequiresMcRestart
+		public boolean reskillable_integration = true;
+
 		@Config.Name("Allow Magic Missile For Any Wizard Players")
 		@Config.Comment("If true, anyone who is not set to a non-wizard player can use the Magic Missile spell.")
 		public boolean allow_magic_missile = false;
@@ -210,6 +218,23 @@ public class Settings {
 		@Config.Name("Discipline Scroll Looting")
 		@Config.Comment("If true, the Book of Fates item can be used multiple times to override the current discipline (the book is still consumed after usage!).")
 		public boolean discipline_scroll_looting = true;
+
+		@Config.Name("Enforce Elemental Armour Set Wearing To Cast")
+		@Config.Comment("[UNUSED, upcoming feature] If true, players can only cast spells if they are wearing a full set of wizard robe."
+				+ "\n Needless to say, discipline enforcements still apply as well")
+		public boolean enforce_full_wizard_robe_set = true;
+
+		@Config.Name("Enforce Discipline Armour Set")
+		@Config.Comment("[UNUSED, upcoming feature] Only has an effect if 'Enforce Elemental Armour Set Wearing To Cast' is true."
+				+ "\n If true, players can only cast spells if they have a full set of MATCHING wizard armour which MATCHES WITH THE SPELL'S ELEMENT."
+				+ "\n Needless to say, discipline enforcements still apply as well")
+		public boolean enforce_full_matching_wizard_robe_set = true;
+
+		@Config.Name("Allow Using The Generic Wizard Robe")
+		@Config.Comment("[UNUSED, upcoming feature] This only has an effect if 'Enforce Discipline Armour Set' and 'Enforce Discipline Armour Set' are BOTH true!"
+				+ "\n If true, players can wear the generic (blue, \"elementless\") robes to cast stuff."
+				+ "\n Needless to say, discipline enforcements still apply as well")
+		public boolean allow_using_generic_wizard_robe = true;
 
 		@Config.Name("Discipline Scroll Loot Chance")
 		@Config.Comment("Determines the chance (roughly) of finding discipline scrolls in the chests defined in the 'Discipline Scroll Loot Inject Locations' list."

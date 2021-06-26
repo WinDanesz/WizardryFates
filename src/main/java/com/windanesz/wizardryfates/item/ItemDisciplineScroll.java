@@ -39,8 +39,8 @@ public class ItemDisciplineScroll extends Item {
 		ItemStack stack = player.getHeldItem(hand);
 
 		if (Settings.settings.discipline_scrolls_enabled) {
-
-			if (DisciplineUtils.addPrimaryDiscipline(player, element, DisciplineMode.getActiveMode() != DisciplineMode.MULTI_DISCIPLINE_MODE, player)) {
+			boolean purgeExisting = DisciplineMode.getActiveMode() == DisciplineMode.SINGLE_DISCIPLINE_MODE;
+			if (DisciplineUtils.addPrimaryDiscipline(player, element, purgeExisting, player)) {
 				if (!world.isRemote) {
 					String elementName = Utils.getElementWithStyleFormat(element);
 

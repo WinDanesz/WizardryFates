@@ -8,6 +8,7 @@ import com.windanesz.wizardryfates.command.CommandSetDiscipline;
 import com.windanesz.wizardryfates.command.CommandSetMagicless;
 import com.windanesz.wizardryfates.handler.DisciplineUtils;
 import com.windanesz.wizardryfates.integration.FatesASIntegration;
+import com.windanesz.wizardryfates.integration.FatesReskillableIntegration;
 import com.windanesz.wizardryfates.item.ItemDisciplineBook;
 import com.windanesz.wizardryfates.packet.FatesPacketHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,7 +28,7 @@ public class WizardryFates {
 
 	public static final String MODID = "wizardryfates";
 	public static final String NAME = "Wizardry Fates by Dan";
-	public static final String VERSION = "2.0.0";
+	public static final String VERSION = "2.1.0";
 	public static final String MC_VERSION = "[1.12.2]";
 
 	public static final Random rand = new Random();
@@ -52,6 +53,7 @@ public class WizardryFates {
 		logger = event.getModLog();
 		settings = new Settings();
 		FatesASIntegration.init();
+		FatesReskillableIntegration.init();
 	}
 
 	@EventHandler

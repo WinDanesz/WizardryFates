@@ -1,5 +1,6 @@
 package com.windanesz.wizardryfates.client;
 
+import com.windanesz.wizardryfates.Settings;
 import com.windanesz.wizardryfates.handler.Discipline;
 import com.windanesz.wizardryfates.handler.DisciplineMode;
 import com.windanesz.wizardryfates.handler.DisciplineUtils;
@@ -86,9 +87,17 @@ public class ClientEventHandler {
 			} else if (mode == DisciplineMode.SUB_DISCIPLINE_MODE) {
 				Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(I18n.format("gui.wizardryfates:main_discipline"), 304 + bookshelfOffset, 196 - modeYOffset, 0xFFFFFF);
 				if (!discipline.primaryDisciplines.isEmpty()) {
-					Element element = discipline.primaryDisciplines.get(0);
-					Minecraft.getMinecraft().renderEngine.bindTexture(element.getIcon());
-					DrawingUtils.drawTexturedRect(ICON_X_POS + bookshelfOffset, 185 + iconVerticalPos, 8, 8);
+					if (Settings.settings.max_multi_disciplines_count == 1) {
+						Element element = discipline.primaryDisciplines.get(0);
+						Minecraft.getMinecraft().renderEngine.bindTexture(element.getIcon());
+						DrawingUtils.drawTexturedRect(ICON_X_POS + bookshelfOffset, 185 + iconVerticalPos, 8, 8);
+					} else {
+						for (int i = 0; i < discipline.primaryDisciplines.size(); i++) {
+							Element element = discipline.primaryDisciplines.get(i);
+							Minecraft.getMinecraft().renderEngine.bindTexture(element.getIcon());
+							DrawingUtils.drawTexturedRect(ICON_X_POS + bookshelfOffset + ICON_X_SPACING * i, 185 + iconVerticalPos, 8, 8);
+						}
+					}
 				}
 
 				Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(I18n.format("gui.wizardryfates:sub_disciplines"), 304 + bookshelfOffset, 196, 0xFFFFFF);

@@ -155,6 +155,11 @@ public class DisciplineUtils {
 					}
 				}
 				disciplineTag.setTag(typeTag, list);
+
+				if (list.tagCount() > Settings.settings.max_multi_disciplines_count) {
+					return false;
+				}
+
 				data.setVariable(DISCIPLINE, disciplineTag);
 				data.sync();
 				return true;
