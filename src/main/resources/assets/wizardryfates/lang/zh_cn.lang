@@ -1,0 +1,97 @@
+#PARSE_ESCAPES
+
+gui.wizardryfates\:unknown_other_element=你似乎不喜欢这个法术!如果没有法术卷轴,施法将无法进行.
+gui.wizardryfates\:spellcast_failed=你无法施法
+gui.wizardryfates\:current_global_discipline_mode=你的主系已被设置为%1$s
+gui.wizardryfates\:commands_to_use=你可以在此模式下使用以下命令: %1$s
+gui.wizardryfates\:cannot_add_discipline_to_magicless_player=一个没有魔法的玩家不会有主系.
+gui.wizardryfates\:discipline=主系
+gui.wizardryfates\:disciplines=副系
+gui.wizardryfates\:main_discipline=主主系
+gui.wizardryfates\:sub_disciplines=子副系
+gui.wizardryfates\:confirm=确认
+
+# COMMANDS
+commands.wizardryfates\:removediscipline.usage=/removediscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING>
+commands.wizardryfates\:removediscipline.execute=从 %1$s 中移除 %2$s
+commands.wizardryfates\:removediscipline.failure=未能从 %1$s 中将 %2$s 移除!
+
+commands.wizardryfates\:setdiscipline.usage=/setdiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING>
+commands.wizardryfates\:setdiscipline.execute=将 %1$s 分配给 %2$s
+commands.wizardryfates\:setdiscipline.failure=未能将 %1$s 设置为%2$s, 请确保他未被分配!
+
+commands.wizardryfates\:addsubdiscipline.usage=/addsubdiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING>
+commands.wizardryfates\:addsubdiscipline.execute=已将 %1$s 的副系设置为 %2$s
+commands.wizardryfates\:addsubdiscipline.failure=未能将 %1$s 设置为副系,请确保玩家未被分配任何副系
+commands.wizardryfates\:addsubdiscipline.incorrect_mode=此命令已被禁用,请确保全局模式已设置为3(主副系模式)
+
+commands.wizardryfates\:removesubdiscipline.failure=副系删除失败,玩家可能没有副系
+commands.wizardryfates\:removesubdiscipline.usage=/removesubdiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING>
+commands.wizardryfates\:removesubdiscipline.execute=从 %1$s 中删除了 %2$s 副系
+
+commands.wizardryfates\:getdiscipline.usage=/getdiscipline [player]
+commands.wizardryfates\:getdiscipline.execute=玩家 %1$s 有以下法术系: %2$s
+
+commands.wizardryfates\:setmagicless.execute_true=已将 %1$s 所有法术系清空
+commands.wizardryfates\:setmagicless.execute_false=未将 %1$s 所有法术系清空
+commands.wizardryfates\:setmagicless.failure=执行命令 /setmagicless 失败
+
+settings.wizardryfates\:server_settings=服务器设置
+
+# MESSAGE
+message.wizardryfates\:already_assigned_as_primary=该主系已被指定为主要的主系
+message.wizardryfates\:already_assigned_as_sub_discipline=该副系已被指定为副系
+message.wizardryfates\:cannot_remove_unassigned_discipline=无法删除未分配的主系
+message.wizardryfates\:cannot_add_more_primary_disciplines=%1$S已经到达主系数量限制!
+message.wizardryfates\:cannot_add_more_sub_disciplines=%1$S已经达到副系数量限制!
+message.wizardryfates\:cannot_receive_more_primary_disciplines=你已经达到了最大主系数量限制!
+message.wizardryfates\:cannot_receive_more_sub_disciplines=你已经达到了最大副系数量限制!
+message.wizardryfates\:invalid_element_name=元素名无效
+message.wizardryfates\:discipline_granted=你现在已被分配到 %1$s 系下
+message.wizardryfates\:book_of_fates_cannot_override_discipline=你已经有了主系!
+
+# ITEMS
+item.wizardryfates\:scroll_earth.name=大地系卷轴
+item.wizardryfates\:scroll_necromancy.name=死灵系卷轴
+item.wizardryfates\:scroll_healing.name=治疗系卷轴
+item.wizardryfates\:scroll_ice.name=寒冰系卷轴
+item.wizardryfates\:scroll_fire.name=烈焰系卷轴
+item.wizardryfates\:scroll_lightning.name=风暴系卷轴
+item.wizardryfates\:scroll_sorcery.name=巫术系卷轴
+item.wizardryfates\:scroll_ancient.name=无属性混沌系卷轴
+
+item.wizardryfates\:lesser_scroll_earth.name=副系-大地系卷轴
+item.wizardryfates\:lesser_scroll_necromancy.name=副系-死灵系卷轴
+item.wizardryfates\:lesser_scroll_healing.name=副系-治疗系卷轴
+item.wizardryfates\:lesser_scroll_ice.name=副系-寒冰系卷轴
+item.wizardryfates\:lesser_scroll_fire.name=副系-烈焰系卷轴
+item.wizardryfates\:lesser_scroll_lightning.name=副系-风暴系卷轴
+item.wizardryfates\:lesser_scroll_sorcery.name=副系-巫术系卷轴
+item.wizardryfates\:lesser_scroll_ancient.name=副系-无属性混沌系卷轴
+
+item.wizardryfates\:lesser_scroll_earth.tooltip=选择 大地系 作为你的主系魔法
+item.wizardryfates\:lesser_scroll_necromancy.tooltip=选择 死灵系 作为你的主系魔法
+item.wizardryfates\:lesser_scroll_healing.tooltip=选择 治疗系 作为你的主系魔法
+item.wizardryfates\:lesser_scroll_ice.tooltip=选择 寒冰系 作为你的主系魔法
+item.wizardryfates\:lesser_scroll_fire.tooltip=选择 烈焰系 作为你的主系魔法
+item.wizardryfates\:lesser_scroll_lightning.tooltip=选择 风暴系 作为你的主系魔法
+item.wizardryfates\:lesser_scroll_sorcery.tooltip=选择 巫术系 作为你的主系魔法
+item.wizardryfates\:lesser_scroll_ancient.tooltip=选择 无属性混沌系 作为你的主系魔法
+
+item.wizardryfates\:scroll_earth.tooltip=选择 大地系 作为你的副系魔法
+item.wizardryfates\:scroll_necromancy.tooltip=选择 死灵系 作为你的副系魔法
+item.wizardryfates\:scroll_healing.tooltip=选择 治疗系 作为你的副系魔法
+item.wizardryfates\:scroll_ice.tooltip=选择 寒冰系 作为你的副系魔法
+item.wizardryfates\:scroll_fire.tooltip=选择 烈焰系 作为你的副系魔法
+item.wizardryfates\:scroll_lightning.tooltip=选择 风暴系 作为你的副系魔法
+item.wizardryfates\:scroll_sorcery.tooltip=选择 巫术系 作为你的副系魔法
+item.wizardryfates\:scroll_ancient.tooltip=选择 无属性混沌系 作为你的副系魔法
+
+item.wizardryfates\:scroll_oblivion.name=遗忘卷轴
+item.wizardryfates\:scroll_oblivion.tooltip=消除所有元素的亲和,会重置你所有的主系与副系.
+item.wizardryfates\:book_of_fates.name=命运之书
+item.wizardryfates\:book_of_fates.tooltip=可以在这本里选择你的魔法系
+
+# MISC
+itemGroup.wizardryfates=巫术命运
+tooltip.wizardryfates\:disabled_item=该项目已被管理员禁用.
