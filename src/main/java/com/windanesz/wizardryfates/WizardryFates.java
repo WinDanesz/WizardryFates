@@ -23,13 +23,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
-@Mod(modid = WizardryFates.MODID, name = WizardryFates.NAME, version = WizardryFates.VERSION, acceptedMinecraftVersions = WizardryFates.MC_VERSION, dependencies = "required-after:ebwizardry@[4.2,4.4)")
+@Mod(modid = WizardryFates.MODID, name = WizardryFates.NAME, version = WizardryFates.VERSION, acceptedMinecraftVersions = WizardryFates.MC_VERSION, dependencies = "required-after:ebwizardry@[@WIZARDRY_VERSION@,4.4)")
 public class WizardryFates {
 
 	public static final String MODID = "wizardryfates";
 	public static final String NAME = "Wizardry Fates by Dan";
-	public static final String VERSION = "2.1.0";
-	public static final String MC_VERSION = "[1.12.2]";
+	public static final String VERSION = "@VERSION@";
+	public static final String MC_VERSION = "@MCVERSION@";
 
 	public static final Random rand = new Random();
 

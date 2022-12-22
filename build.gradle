@@ -130,7 +130,6 @@ dependencies {
     implementation fg.deobf("curse.maven:Reskillable-${reskillable_projectid}:${reskillable_fileid}")
     implementation fg.deobf("curse.maven:WizardryUtils-${wizardryutils_projectid}:${wizardryutils_fileid}")
 
-    compileOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.643"
     //// Dependencies ////
 }
 
