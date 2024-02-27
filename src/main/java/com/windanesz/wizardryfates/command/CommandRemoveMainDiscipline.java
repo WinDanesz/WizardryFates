@@ -16,9 +16,9 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 import java.util.List;
 
-public class CommandRemoveDiscipline extends CommandBase {
+public class CommandRemoveMainDiscipline extends CommandBase {
 
-	public static final String COMMAND = "removediscipline";
+	public static final String COMMAND = "removemaindiscipline";
 
 	public String getName() {
 		return COMMAND;
