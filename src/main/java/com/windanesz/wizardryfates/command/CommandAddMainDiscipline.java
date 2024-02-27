@@ -3,7 +3,6 @@ package com.windanesz.wizardryfates.command;
 import com.windanesz.wizardryfates.Settings;
 import com.windanesz.wizardryfates.WizardryFates;
 import com.windanesz.wizardryfates.handler.Discipline;
-import com.windanesz.wizardryfates.handler.DisciplineMode;
 import com.windanesz.wizardryfates.handler.DisciplineUtils;
 import com.windanesz.wizardryfates.handler.Utils;
 import electroblob.wizardry.constants.Element;
@@ -20,9 +19,9 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
-public class CommandSetDiscipline extends CommandBase {
+public class CommandAddMainDiscipline extends CommandBase {
 
-	public static final String COMMAND = "setdiscipline";
+	public static final String COMMAND = "addmaindiscipline";
 
 	public String getName() {
 		return COMMAND;
@@ -73,24 +72,27 @@ public class CommandSetDiscipline extends CommandBase {
 		Discipline discipline = DisciplineUtils.getPlayerDisciplines(targetPlayer);
 
 		if (discipline.isMagiclessPlayer()) {
-			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:cannot_add_discipline_to_magicless_player"));
+			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:cannot_add_discipline_to_magicless_player").setStyle((new Style()).setColor(TextFormatting.RED)));
 			return;
 		}
 
 		if (discipline.primaryDisciplines.contains(newElement)) {
-			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_primary"));
+			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_primary").setStyle((new Style()).setColor(TextFormatting.RED)));
 			return;
 		}
 
 		if (discipline.secondaryDisciplines.contains(newElement)) {
-			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_sub_discipline"));
+			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_sub_discipline").setStyle((new Style()).setColor(TextFormatting.RED)));
+			return;
+		}
+
+		if (discipline.primaryDisciplines.size() >= Settings.settings.max_main_discipline_count) {
+			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:cannot_add_more_primary_disciplines").setStyle((new Style()).setColor(TextFormatting.RED)));
 			return;
 		}
 
 		EntityPlayer senderPlayer = sender instanceof EntityPlayer ? (EntityPlayer) sender : null;
-
-		boolean purgeExisting = DisciplineMode.getActiveMode() != DisciplineMode.MULTI_DISCIPLINE_MODE || (!(DisciplineMode.getActiveMode() == DisciplineMode.SUB_DISCIPLINE_MODE && Settings.settings.max_multi_disciplines_count > 1));
-		if (DisciplineUtils.addPrimaryDiscipline(targetPlayer, newElement, purgeExisting, senderPlayer)) {
+		if (DisciplineUtils.addPrimaryDiscipline(targetPlayer, newElement, false, senderPlayer)) {
 			TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".execute",
 					targetPlayer.getDisplayName(),
 					Utils.getElementWithStyleFormat(newElement));
