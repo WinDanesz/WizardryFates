@@ -2,7 +2,6 @@ package com.windanesz.wizardryfates.command;
 
 import com.windanesz.wizardryfates.WizardryFates;
 import com.windanesz.wizardryfates.handler.Discipline;
-import com.windanesz.wizardryfates.handler.DisciplineMode;
 import com.windanesz.wizardryfates.handler.DisciplineUtils;
 import com.windanesz.wizardryfates.handler.Utils;
 import electroblob.wizardry.constants.Element;
@@ -20,7 +19,7 @@ import java.util.List;
 
 public class CommandGetDiscipline extends CommandBase {
 
-	public static final String COMMAND = "getdiscipline";
+	public static final String COMMAND = "getdisciplinss";
 
 	public String getName() {
 		return COMMAND;
@@ -59,37 +58,21 @@ public class CommandGetDiscipline extends CommandBase {
 		Discipline discipline = DisciplineUtils.getPlayerDisciplines(entityplayermp);
 		StringBuilder disciplines = new StringBuilder();
 
-		switch (DisciplineMode.getActiveMode()) {
-			case SINGLE_DISCIPLINE_MODE:
-				if (discipline.primaryDisciplines.isEmpty()) {
-					disciplines.append("none");
-				} else {
-					disciplines.append(Utils.getElementWithStyleFormat(discipline.primaryDisciplines.get(0)));
-				}
-				break;
-
-			case MULTI_DISCIPLINE_MODE:
-				disciplines.append(getPrimaryDisciplines(discipline));
-				break;
-
-			case SUB_DISCIPLINE_MODE:
-				disciplines.append("Primary Discipline: ");
-				if (discipline.primaryDisciplines.isEmpty()) {
-					disciplines.append("none");
-				} else {
-					disciplines.append(Utils.getElementWithStyleFormat(discipline.primaryDisciplines.get(0)));
-				}
-				disciplines.append(". ");
-				disciplines.append(getSecondaryDisciplines(discipline));
-				break;
-
+		disciplines.append("Primary Discipline: ");
+		if (discipline.primaryDisciplines.isEmpty()) {
+			disciplines.append("none");
+		} else {
+			disciplines.append(getMainDisciplines(discipline));
 		}
+		disciplines.append(". ");
+		disciplines.append(getSecondaryDisciplines(discipline));
+
 
 		TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".execute", entityplayermp.getDisplayName(), disciplines.toString());
 		sender.sendMessage(textComponentTranslation);
 	}
 
-	private String getPrimaryDisciplines(Discipline discipline) {
+	private String getMainDisciplines(Discipline discipline) {
 		StringBuilder disciplines = new StringBuilder();
 
 		if (discipline.primaryDisciplines.isEmpty()) {
@@ -102,8 +85,6 @@ public class CommandGetDiscipline extends CommandBase {
 				disciplines.append(Utils.getElementWithStyleFormat(element));
 				if (iterator.hasNext()) {
 					disciplines.append(", ");
-				} else {
-					disciplines.append(". ");
 				}
 			}
 		}
