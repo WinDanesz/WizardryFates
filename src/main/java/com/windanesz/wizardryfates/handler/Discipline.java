@@ -67,26 +67,12 @@ public class Discipline {
 			}
 		}
 
-		if (primaryDisciplines.contains(element) || secondaryDisciplines.contains(element)) {
-			// element is assigned
+		if (primaryDisciplines.contains(element)) {
+			return true;
+		}
 
-			DisciplineMode mode = DisciplineMode.getActiveMode();
-
-			if (mode == DisciplineMode.SINGLE_DISCIPLINE_MODE && !primaryDisciplines.isEmpty() && primaryDisciplines.get(0) == element) {
-				return true;
-			}
-
-			if (mode == DisciplineMode.MULTI_DISCIPLINE_MODE) {
-				return primaryDisciplines.contains(element);
-			}
-
-			if (mode == DisciplineMode.SUB_DISCIPLINE_MODE) {
-				if (primaryDisciplines.contains(element)) {
-					return true;
-				}
-
-				return DisciplineUtils.isTierSufficient(Settings.settings.sub_discipline_spellcasting_tier_limit, tier);
-			}
+		if (secondaryDisciplines.contains(element)) {
+			return DisciplineUtils.isTierSufficient(Settings.settings.sub_discipline_spellcasting_tier_limit, tier);
 		}
 
 		return false;
@@ -156,21 +142,21 @@ public class Discipline {
 		return magicless;
 	}
 
-//	/**
-//	 * Returns whether the given entity is wearing a full set of wizard armour of the given class and element.
-//	 * @param entity The entity to query.
-//	 * @param element The element to check, or null to accept any element as long as they are all the same.
-//	 * @param armourClass The class to check, or null to accept any class as long as they are all the same.
-//	 * @return True if the entity is wearing a full set of the given element and class, false otherwise.
-//	 */
-//	private static boolean isWearingFullSet(EntityLivingBase entity, @Nullable Element element, @Nullable ArmourClass armourClass){
-//		ItemStack helmet = entity.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-//		if(!(helmet.getItem() instanceof ItemWizardArmour)) return false;
-//		Element e = element == null ? ((ItemWizardArmour)helmet.getItem()).element : element;
-//		ArmourClass ac = armourClass == null ? ((ItemWizardArmour)helmet.getItem()).armourClass : armourClass;
-//		return Arrays.stream(InventoryUtils.ARMOUR_SLOTS)
-//				.allMatch(s -> entity.getItemStackFromSlot(s).getItem() instanceof ItemWizardArmour
-//						&& ((ItemWizardArmour)entity.getItemStackFromSlot(s).getItem()).element == e
-//						&& ((ItemWizardArmour)entity.getItemStackFromSlot(s).getItem()).armourClass == ac);
-//	}
+	//	/**
+	//	 * Returns whether the given entity is wearing a full set of wizard armour of the given class and element.
+	//	 * @param entity The entity to query.
+	//	 * @param element The element to check, or null to accept any element as long as they are all the same.
+	//	 * @param armourClass The class to check, or null to accept any class as long as they are all the same.
+	//	 * @return True if the entity is wearing a full set of the given element and class, false otherwise.
+	//	 */
+	//	private static boolean isWearingFullSet(EntityLivingBase entity, @Nullable Element element, @Nullable ArmourClass armourClass){
+	//		ItemStack helmet = entity.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+	//		if(!(helmet.getItem() instanceof ItemWizardArmour)) return false;
+	//		Element e = element == null ? ((ItemWizardArmour)helmet.getItem()).element : element;
+	//		ArmourClass ac = armourClass == null ? ((ItemWizardArmour)helmet.getItem()).armourClass : armourClass;
+	//		return Arrays.stream(InventoryUtils.ARMOUR_SLOTS)
+	//				.allMatch(s -> entity.getItemStackFromSlot(s).getItem() instanceof ItemWizardArmour
+	//						&& ((ItemWizardArmour)entity.getItemStackFromSlot(s).getItem()).element == e
+	//						&& ((ItemWizardArmour)entity.getItemStackFromSlot(s).getItem()).armourClass == ac);
+	//	}
 }

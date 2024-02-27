@@ -4,7 +4,7 @@ import com.windanesz.wizardryfates.WizardryFates;
 import com.windanesz.wizardryfates.item.ItemDisciplineBook;
 import com.windanesz.wizardryfates.item.ItemDisciplineScroll;
 import com.windanesz.wizardryfates.item.ItemFatesOblivionScroll;
-import com.windanesz.wizardryfates.item.ItemLesserDisciplineScroll;
+import com.windanesz.wizardryfates.item.ItemSubDisciplineScroll;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.registry.WizardryTabs;
 import net.minecraft.block.Block;
@@ -97,14 +97,14 @@ public class WizardryFatesItems {
 		registerItem(registry, "scroll_ancient", new ItemDisciplineScroll(Element.MAGIC));
 
 
-		registerItem(registry, "lesser_scroll_earth", new ItemLesserDisciplineScroll(Element.EARTH));
-		registerItem(registry, "lesser_scroll_necromancy", new ItemLesserDisciplineScroll(Element.NECROMANCY));
-		registerItem(registry, "lesser_scroll_healing", new ItemLesserDisciplineScroll(Element.HEALING));
-		registerItem(registry, "lesser_scroll_lightning", new ItemLesserDisciplineScroll(Element.LIGHTNING));
-		registerItem(registry, "lesser_scroll_ice", new ItemLesserDisciplineScroll(Element.ICE));
-		registerItem(registry, "lesser_scroll_fire", new ItemLesserDisciplineScroll(Element.FIRE));
-		registerItem(registry, "lesser_scroll_sorcery", new ItemLesserDisciplineScroll(Element.SORCERY));
-		registerItem(registry, "lesser_scroll_ancient", new ItemLesserDisciplineScroll(Element.MAGIC));
+		registerItem(registry, "lesser_scroll_earth", new ItemSubDisciplineScroll(Element.EARTH));
+		registerItem(registry, "lesser_scroll_necromancy", new ItemSubDisciplineScroll(Element.NECROMANCY));
+		registerItem(registry, "lesser_scroll_healing", new ItemSubDisciplineScroll(Element.HEALING));
+		registerItem(registry, "lesser_scroll_lightning", new ItemSubDisciplineScroll(Element.LIGHTNING));
+		registerItem(registry, "lesser_scroll_ice", new ItemSubDisciplineScroll(Element.ICE));
+		registerItem(registry, "lesser_scroll_fire", new ItemSubDisciplineScroll(Element.FIRE));
+		registerItem(registry, "lesser_scroll_sorcery", new ItemSubDisciplineScroll(Element.SORCERY));
+		registerItem(registry, "lesser_scroll_ancient", new ItemSubDisciplineScroll(Element.MAGIC));
 
 		registerItem(registry, "scroll_oblivion", new ItemFatesOblivionScroll());
 

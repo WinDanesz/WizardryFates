@@ -98,25 +98,22 @@ public class Settings {
 		public boolean allow_other_sources = true;
 
 		@Config.Name("Global Discipline Mode")
-		@Config.Comment("This setting defines how Wizardry - Fates disciplines work. Possible modes: "
-				+ "\n1: Single Discipline Mode - every player can only have one discipline at once"
-				+ "\n2: Multi-Discipline Mode - every player can have more than one discipline at once, all of these are treated equally (in max tiers, potency, etc."
-				+ "\n3: Sub-Discipline Mode - every player can have ONE main discipline and one or more sub-disciplines. The maximum tier of these secondary elemental talents can be configured in the other settings to make them weaker than the main discipline")
+		@Config.Comment("DEPRECATED - no longer in use")
 		@Config.SlidingOption
 		@Config.RangeInt(min = 1, max = 3)
 		public int global_discipline_mode = 1;
 
-		@Config.Name("Max Multi-Discipline Count")
-		@Config.Comment("Only works if Global Discipline Mode is set to '3'. Specifies how many disciplines a player can have at max.")
+		@Config.Name("Max Main Discipline Count")
+		@Config.Comment("Specifies the maximum number of main disciplines a player can have.")
 		@Config.SlidingOption
-		@Config.RangeInt(min = 1, max = 7)
-		public int max_multi_disciplines_count = 2;
+		@Config.RangeInt(min = 1, max = 8)
+		public int max_main_discipline_count = 8;
 
-		@Config.Name("Max Sub-Discipline Count")
-		@Config.Comment("Only works if Global Discipline Mode is set to '3'. Specifies how many sub-disciplines a player can have at max.")
+		@Config.Name("Max Sub Discipline Count")
+		@Config.Comment("Specifies the maximum number of sub-disciplines a player can have.")
 		@Config.SlidingOption
-		@Config.RangeInt(min = 1, max = 7)
-		public int max_sub_discipline_count = 1;
+		@Config.RangeInt(min = 1, max = 8)
+		public int max_sub_discipline_count = 8;
 
 		@Config.Name("Sub-Discipline Tier Cap")
 		@Config.Comment("Specifies the tier limit of Sub-Disciplines. Players can't cast spells which are part of their Sub-Discipline and are above this tier. Values:"
@@ -160,7 +157,9 @@ public class Settings {
 				"NECROMANCY",
 				"EARTH",
 				"SORCERY",
-				"HEALING"};
+				"HEALING",
+				"ANCIENT"
+		};
 
 		@Config.Name("Hardcore Wand Usage")
 		@Config.Comment("If enabled, players can only use wands of their own discipline(s)")
@@ -170,7 +169,7 @@ public class Settings {
 		@Config.Comment("If enabled, players can only use wands of their own discipline(s) and according to tier caps they have on these disciplines")
 		public boolean ultra_hardcore_wand_usage = false;
 
-		@Config.Name("Ancient Spellcraft Integration")
+		@Config.Name("Ancient Spellcraft ntegration")
 		@Config.Comment("If the integration is active, the 'ANCIENT' discipline becomes available.")
 		@Config.RequiresMcRestart
 		public boolean ancient_spellcraft_integration = true;

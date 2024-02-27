@@ -1,10 +1,10 @@
 package com.windanesz.wizardryfates;
 
+import com.windanesz.wizardryfates.command.CommandAddMainDiscipline;
 import com.windanesz.wizardryfates.command.CommandAddSubDiscipline;
 import com.windanesz.wizardryfates.command.CommandGetDiscipline;
-import com.windanesz.wizardryfates.command.CommandRemoveDiscipline;
+import com.windanesz.wizardryfates.command.CommandRemoveMainDiscipline;
 import com.windanesz.wizardryfates.command.CommandRemoveSubDiscipline;
-import com.windanesz.wizardryfates.command.CommandSetDiscipline;
 import com.windanesz.wizardryfates.command.CommandSetMagicless;
 import com.windanesz.wizardryfates.handler.DisciplineUtils;
 import com.windanesz.wizardryfates.integration.FatesASIntegration;
@@ -23,7 +23,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
-@Mod(modid = WizardryFates.MODID, name = WizardryFates.NAME, version = WizardryFates.VERSION, acceptedMinecraftVersions = WizardryFates.MC_VERSION, dependencies = "required-after:ebwizardry@[@WIZARDRY_VERSION@,4.4)")
+@Mod(modid = WizardryFates.MODID, name = WizardryFates.NAME, version = WizardryFates.VERSION, acceptedMinecraftVersions = WizardryFates.MC_VERSION, dependencies = "required-after:ebwizardry@[4.3.7,4.4)")
 public class WizardryFates {
 
 	public static final String MODID = "wizardryfates";
@@ -72,10 +72,10 @@ public class WizardryFates {
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandGetDiscipline());
-		event.registerServerCommand(new CommandSetDiscipline());
+		event.registerServerCommand(new CommandAddMainDiscipline());
 		event.registerServerCommand(new CommandAddSubDiscipline());
 		event.registerServerCommand(new CommandSetMagicless());
-		event.registerServerCommand(new CommandRemoveDiscipline());
+		event.registerServerCommand(new CommandRemoveMainDiscipline());
 		event.registerServerCommand(new CommandRemoveSubDiscipline());
 	}
 

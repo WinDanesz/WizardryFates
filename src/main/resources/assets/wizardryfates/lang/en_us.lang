@@ -7,30 +7,30 @@ gui.wizardryfates\:commands_to_use=You can use the following commands with this 
 gui.wizardryfates\:cannot_add_discipline_to_magicless_player=A magicless player cannot have a discipline!
 gui.wizardryfates\:discipline=Discipline
 gui.wizardryfates\:disciplines=Disciplines
-gui.wizardryfates\:main_discipline=Main Discipline
+gui.wizardryfates\:main_discipline=Main Disciplines
 gui.wizardryfates\:sub_disciplines=Sub-Disciplines
 gui.wizardryfates\:confirm=Confirm
 
 # COMMANDS
-commands.wizardryfates\:removediscipline.usage=/removediscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING>
-commands.wizardryfates\:removediscipline.execute=Removed %2$s from %1$s
-commands.wizardryfates\:removediscipline.failure=Failed to set remove discipline from %1$s
+commands.wizardryfates\:removemaindiscipline.usage=/removemaindiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING/ANCIENT>
+commands.wizardryfates\:removemaindiscipline.execute=Removed %2$s from %1$s
+commands.wizardryfates\:removemaindiscipline.failure=Failed to set remove discipline from %1$s
 
-commands.wizardryfates\:setdiscipline.usage=/setdiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING>
-commands.wizardryfates\:setdiscipline.execute=Assigned %2$s to %1$s
-commands.wizardryfates\:setdiscipline.failure=Failed to set discipline for %1$s, make sure its not assigned already
+commands.wizardryfates\:addmaindiscipline.usage=/addmaindiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING/ANCIENT>
+commands.wizardryfates\:addmaindiscipline.execute=Assigned %2$s to %1$s
+commands.wizardryfates\:addmaindiscipline.failure=Failed to set the sub-discipline for %1$s. Please ensure it is not already assigned.
 
-commands.wizardryfates\:addsubdiscipline.usage=/addsubdiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING>
+commands.wizardryfates\:addsubdiscipline.usage=/addsubdiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING/ANCIENT>
 commands.wizardryfates\:addsubdiscipline.execute=Assigned %2$s as a Sub-Discipline to %1$s
-commands.wizardryfates\:addsubdiscipline.failure=Failed to set sub-discipline for %1$s, make sure its not assigned already
+commands.wizardryfates\:addsubdiscipline.failure=Failed to set the sub-discipline for %1$s. Please ensure it is not already assigned.
 commands.wizardryfates\:addsubdiscipline.incorrect_mode=This command is disabled as your global discipline mode is NOT set to 3 (Sub-Discipline Mode)!
 
 commands.wizardryfates\:removesubdiscipline.failure=Failed to remove discipline, possibly the player did not have it
-commands.wizardryfates\:removesubdiscipline.usage=/removesubdiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING>
+commands.wizardryfates\:removesubdiscipline.usage=/removesubdiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING/ANCIENT>
 commands.wizardryfates\:removesubdiscipline.execute=Removed %2$s sub-discipline from %1$s
 
-commands.wizardryfates\:getdiscipline.usage=/getdiscipline [player]
-commands.wizardryfates\:getdiscipline.execute=Player %1$s has the following discipline(s): %2$s
+commands.wizardryfates\:getdisciplines.usage=/getdisciplines [player]
+commands.wizardryfates\:getdisciplines.execute=Player %1$s has the following disciplines: %2$s
 
 commands.wizardryfates\:setmagicless.execute_true=Made %1$s permanently magicless and took away all of their disciplines
 commands.wizardryfates\:setmagicless.execute_false=Made %1$s able to have disciplines
@@ -49,6 +49,7 @@ message.wizardryfates\:cannot_receive_more_sub_disciplines=You have already reac
 message.wizardryfates\:invalid_element_name=Invalid element name
 message.wizardryfates\:discipline_granted=You now have an affinity for %1$s
 message.wizardryfates\:book_of_fates_cannot_override_discipline=You already have a discipline!
+message.wizardryfates\:sub_discipline_removed=You no longer have this element as a sub-discipline
 
 # ITEMS
 item.wizardryfates\:scroll_earth.name=Scroll of the Earth Mage
@@ -69,14 +70,14 @@ item.wizardryfates\:lesser_scroll_lightning.name=Lesser Scroll of Lightning
 item.wizardryfates\:lesser_scroll_sorcery.name=Lesser Scroll of Sorcery
 item.wizardryfates\:lesser_scroll_ancient.name=Lesser Scroll of the Ancients
 
-item.wizardryfates\:lesser_scroll_earth.tooltip=Grants Earth magic as a lesser discipline
-item.wizardryfates\:lesser_scroll_necromancy.tooltip=Grants Necromancy as a lesser discipline
-item.wizardryfates\:lesser_scroll_healing.tooltip=Grants Healing as a lesser discipline
-item.wizardryfates\:lesser_scroll_ice.tooltip=Grants Ice magic as a lesser discipline
-item.wizardryfates\:lesser_scroll_fire.tooltip=Grants Fire magic as a lesser discipline
-item.wizardryfates\:lesser_scroll_lightning.tooltip=Grants Lightning magic as a lesser discipline
-item.wizardryfates\:lesser_scroll_sorcery.tooltip=Grants Sorcery as a lesser discipline
-item.wizardryfates\:lesser_scroll_ancient.tooltip=Grants Ancient magic as a lesser discipline
+item.wizardryfates\:lesser_scroll_earth.tooltip=Grants Earth magic as a sub-discipline
+item.wizardryfates\:lesser_scroll_necromancy.tooltip=Grants Necromancy as a sub-discipline
+item.wizardryfates\:lesser_scroll_healing.tooltip=Grants Healing as a sub-discipline
+item.wizardryfates\:lesser_scroll_ice.tooltip=Grants Ice magic as a sub-discipline
+item.wizardryfates\:lesser_scroll_fire.tooltip=Grants Fire magic as a sub-discipline
+item.wizardryfates\:lesser_scroll_lightning.tooltip=Grants Lightning magic as a sub-discipline
+item.wizardryfates\:lesser_scroll_sorcery.tooltip=Grants Sorcery as a sub-discipline
+item.wizardryfates\:lesser_scroll_ancient.tooltip=Grants Ancient magic as a sub-discipline
 
 item.wizardryfates\:scroll_earth.tooltip=Grants Earth magic as a discipline
 item.wizardryfates\:scroll_necromancy.tooltip=Grants Necromancy as a discipline

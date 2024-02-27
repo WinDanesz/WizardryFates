@@ -103,7 +103,7 @@ public class DisciplineUtils {
 			return false;
 		}
 
-		if (typeTag.equals(PRIMARY_DISCIPLINE_TAG) && discipline.primaryDisciplines.size() == Settings.settings.max_multi_disciplines_count) {
+		if (typeTag.equals(PRIMARY_DISCIPLINE_TAG) && discipline.primaryDisciplines.size() == Settings.settings.max_main_discipline_count) {
 			if (caller != null && !caller.world.isRemote) {
 				if (caller == player) {
 					caller.sendMessage(new TextComponentTranslation("message.wizardryfates:cannot_receive_more_primary_disciplines"));
@@ -156,7 +156,7 @@ public class DisciplineUtils {
 				}
 				disciplineTag.setTag(typeTag, list);
 
-				if (list.tagCount() > Settings.settings.max_multi_disciplines_count) {
+				if (list.tagCount() > Settings.settings.max_main_discipline_count) {
 					return false;
 				}
 
@@ -169,21 +169,7 @@ public class DisciplineUtils {
 	}
 
 	public static boolean removePrimaryDiscipline(EntityPlayer player, Element element) {
-		Discipline discipline = DisciplineUtils.getPlayerDisciplines(player);
-
-		if (DisciplineMode.getActiveMode() == DisciplineMode.MULTI_DISCIPLINE_MODE) {
-			return removeDiscipline(player, element, PRIMARY_DISCIPLINE_TAG);
-		} else {
-			// purge all elements if we are not in multi discipline mode
-			List<Element> elementsToRemove = new ArrayList<>(discipline.primaryDisciplines);
-
-			for (Element element1 : elementsToRemove) {
-				if (!DisciplineUtils.removeDiscipline(player, element1, PRIMARY_DISCIPLINE_TAG)) {
-					return false;
-				}
-			}
-			return true;
-		}
+		return removeDiscipline(player, element, PRIMARY_DISCIPLINE_TAG);
 	}
 
 	public static boolean removeSubDiscipline(EntityPlayer player, Element element) {

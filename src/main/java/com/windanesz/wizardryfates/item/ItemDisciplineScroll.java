@@ -2,7 +2,6 @@ package com.windanesz.wizardryfates.item;
 
 import com.windanesz.wizardryfates.Settings;
 import com.windanesz.wizardryfates.WizardryFates;
-import com.windanesz.wizardryfates.handler.DisciplineMode;
 import com.windanesz.wizardryfates.handler.DisciplineUtils;
 import com.windanesz.wizardryfates.handler.Utils;
 import com.windanesz.wizardryfates.registry.Sounds;
@@ -39,8 +38,7 @@ public class ItemDisciplineScroll extends Item {
 		ItemStack stack = player.getHeldItem(hand);
 
 		if (Settings.settings.discipline_scrolls_enabled) {
-			boolean purgeExisting = DisciplineMode.getActiveMode() == DisciplineMode.SINGLE_DISCIPLINE_MODE;
-			if (DisciplineUtils.addPrimaryDiscipline(player, element, purgeExisting, player)) {
+			if (DisciplineUtils.addPrimaryDiscipline(player, element, false, player)) {
 				if (!world.isRemote) {
 					String elementName = Utils.getElementWithStyleFormat(element);
 
@@ -52,6 +50,10 @@ public class ItemDisciplineScroll extends Item {
 
 				}
 				stack.shrink(1);
+
+				if (DisciplineUtils.removeSubDiscipline(player, element)) {
+					player.sendMessage(new TextComponentTranslation("message.wizardryfates:sub_discipline_removed"));
+				}
 				return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 			}
 		}

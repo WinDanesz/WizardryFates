@@ -2,7 +2,6 @@ package com.windanesz.wizardryfates.command;
 
 import com.windanesz.wizardryfates.WizardryFates;
 import com.windanesz.wizardryfates.handler.Discipline;
-import com.windanesz.wizardryfates.handler.DisciplineMode;
 import com.windanesz.wizardryfates.handler.DisciplineUtils;
 import com.windanesz.wizardryfates.handler.Utils;
 import electroblob.wizardry.constants.Element;
@@ -60,14 +59,6 @@ public class CommandAddSubDiscipline extends CommandBase {
 			throw new WrongUsageException(getUsage(sender));
 		}
 
-		DisciplineMode mode = DisciplineMode.getActiveMode();
-		if (mode != DisciplineMode.SUB_DISCIPLINE_MODE) {
-			sender.sendMessage(new TextComponentTranslation("commands.wizardryfates:addsubdiscipline.incorrect_mode").setStyle((new Style()).setColor(TextFormatting.RED)));
-			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:current_global_discipline_mode", mode));
-			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:commands_to_use", ("/setdiscipline, /removediscipline")).setStyle((new Style()).setColor(TextFormatting.GREEN)));
-			return;
-		}
-
 		EntityPlayer targetPlayer = getPlayer(server, sender, arguments[0]);
 		Element newElement;
 		try {
@@ -81,17 +72,17 @@ public class CommandAddSubDiscipline extends CommandBase {
 		Discipline discipline = DisciplineUtils.getPlayerDisciplines(targetPlayer);
 
 		if (discipline.isMagiclessPlayer()) {
-			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:cannot_add_discipline_to_magicless_player"));
+			sender.sendMessage(new TextComponentTranslation("gui.wizardryfates:cannot_add_discipline_to_magicless_player").setStyle((new Style()).setColor(TextFormatting.RED)));
 			return;
 		}
 
 		if (discipline.primaryDisciplines.contains(newElement)) {
-			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_primary"));
+			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_primary").setStyle((new Style()).setColor(TextFormatting.RED)));
 			return;
 		}
 
 		if (discipline.secondaryDisciplines.contains(newElement)) {
-			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_sub_discipline"));
+			sender.sendMessage(new TextComponentTranslation("message.wizardryfates:already_assigned_as_sub_discipline").setStyle((new Style()).setColor(TextFormatting.RED)));
 			return;
 		}
 
@@ -105,7 +96,7 @@ public class CommandAddSubDiscipline extends CommandBase {
 		} else {
 			TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".failure",
 					targetPlayer.getDisplayName(), Utils.getElementWithStyleFormat(newElement));
-			sender.sendMessage(textComponentTranslation);
+			sender.sendMessage(textComponentTranslation.setStyle((new Style()).setColor(TextFormatting.RED)));
 		}
 	}
 
