@@ -17,6 +17,8 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
+import java.util.List;
+
 @Mod.EventBusSubscriber
 public class WFEventHandler {
 
@@ -84,6 +86,20 @@ public class WFEventHandler {
 
 					data.setVariable(ItemDisciplineBook.RECEIVED_FATES_BOOK, Boolean.TRUE);
 					data.sync();
+				}
+			}
+
+			if (!event.player.world.isRemote && Settings.settings.whitelist_for_main_disciplines_assigned_to_new_players_joining_world.length > 0) {
+				List<Element> elements = Settings.convertToElementList(Settings.settings.whitelist_for_main_disciplines_assigned_to_new_players_joining_world);
+				for (Element element : elements) {
+					DisciplineUtils.addMainDiscipline(event.player, element, false, event.player);
+				}
+			}
+
+			if (!event.player.world.isRemote && Settings.settings.whitelist_for_sub_disciplines_assigned_to_new_players_joining_world.length > 0) {
+				List<Element> elements = Settings.convertToElementList(Settings.settings.whitelist_for_sub_disciplines_assigned_to_new_players_joining_world);
+				for (Element element : elements) {
+					DisciplineUtils.addSubDiscipline(event.player, element, false, event.player);
 				}
 			}
 		}

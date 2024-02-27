@@ -109,6 +109,16 @@ public class Settings {
 		@Config.RangeInt(min = 1, max = 8)
 		public int max_main_discipline_count = 8;
 
+		@Config.Name("Whitelist For Main Disciplines Assigned To New Players Joining World")
+		@Config.Comment("List of main disciplines that are assigned to new players when they join the world for the first time.")
+		public String[] whitelist_for_main_disciplines_assigned_to_new_players_joining_world = {
+		};
+
+		@Config.Name("Whitelist For Sub Disciplines Assigned To New Players Joining World")
+		@Config.Comment("List of sub-disciplines that are assigned to new players when they join the world for the first time.")
+		public String[] whitelist_for_sub_disciplines_assigned_to_new_players_joining_world = {
+		};
+
 		@Config.Name("Max Sub Discipline Count")
 		@Config.Comment("Specifies the maximum number of sub-disciplines a player can have.")
 		@Config.SlidingOption
@@ -215,7 +225,7 @@ public class Settings {
 		public boolean book_of_fates_in_starter_inventory = true;
 
 		@Config.Name("Discipline Scroll Looting")
-		@Config.Comment("If true, the Book of Fates item can be used multiple times to override the current discipline (the book is still consumed after usage!).")
+		@Config.Comment("If true, main discipline scrolls will appear in loot chests.")
 		public boolean discipline_scroll_looting = true;
 
 		@Config.Name("Enforce Elemental Armour Set Wearing To Cast")

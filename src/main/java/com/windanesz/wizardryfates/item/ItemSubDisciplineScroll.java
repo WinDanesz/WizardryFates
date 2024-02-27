@@ -61,7 +61,7 @@ public class ItemSubDisciplineScroll extends Item {
 				return new ActionResult<>(EnumActionResult.FAIL, stack);
 			}
 
-			if (DisciplineUtils.addSecondaryDiscipline(player, element, false, player)) {
+			if (DisciplineUtils.addSubDiscipline(player, element, false, player)) {
 
 				if (!world.isRemote) {
 					String elementName = Utils.getElementWithStyleFormat(element);

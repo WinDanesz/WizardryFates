@@ -32,7 +32,7 @@ public class PacketDisciplineButtonConfirm implements IMessageHandler<PacketDisc
 				if (!player.world.isRemote) {
 
 					if (Settings.settings.book_of_fates_override) {
-						if (DisciplineUtils.addPrimaryDiscipline(player, message.element, true, player)) {
+						if (DisciplineUtils.addMainDiscipline(player, message.element, true, player)) {
 							String elementName = Utils.getElementWithStyleFormat(message.element);
 							if (message.element == Element.MAGIC) {
 								elementName += " MAGIC";

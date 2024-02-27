@@ -39,7 +39,7 @@ commands.wizardryfates\:setmagicless.failure=Failed to execute /setmagicless com
 settings.wizardryfates\:server_settings=Server Settings
 
 # MESSAGE
-message.wizardryfates\:already_assigned_as_primary=This discipline is already assigned as a primary discipline!
+message.wizardryfates\:already_assigned_as_primary=This discipline is already assigned as a main discipline!
 message.wizardryfates\:already_assigned_as_sub_discipline=This discipline is already assigned as a sub-discipline!
 message.wizardryfates\:cannot_remove_unassigned_discipline=Cannot remove an unassigned discipline!
 message.wizardryfates\:cannot_add_more_primary_disciplines=%1$S has already reached the multi-discipline limit!

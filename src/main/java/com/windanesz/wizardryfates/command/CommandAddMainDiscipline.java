@@ -92,7 +92,7 @@ public class CommandAddMainDiscipline extends CommandBase {
 		}
 
 		EntityPlayer senderPlayer = sender instanceof EntityPlayer ? (EntityPlayer) sender : null;
-		if (DisciplineUtils.addPrimaryDiscipline(targetPlayer, newElement, false, senderPlayer)) {
+		if (DisciplineUtils.addMainDiscipline(targetPlayer, newElement, false, senderPlayer)) {
 			TextComponentTranslation textComponentTranslation = new TextComponentTranslation(getUnlocalizedName() + ".execute",
 					targetPlayer.getDisplayName(),
 					Utils.getElementWithStyleFormat(newElement));

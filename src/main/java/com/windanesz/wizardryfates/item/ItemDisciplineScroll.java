@@ -38,7 +38,7 @@ public class ItemDisciplineScroll extends Item {
 		ItemStack stack = player.getHeldItem(hand);
 
 		if (Settings.settings.discipline_scrolls_enabled) {
-			if (DisciplineUtils.addPrimaryDiscipline(player, element, false, player)) {
+			if (DisciplineUtils.addMainDiscipline(player, element, false, player)) {
 				if (!world.isRemote) {
 					String elementName = Utils.getElementWithStyleFormat(element);
 

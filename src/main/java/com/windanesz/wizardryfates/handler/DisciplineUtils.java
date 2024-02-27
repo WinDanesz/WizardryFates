@@ -86,11 +86,11 @@ public class DisciplineUtils {
 		return new Discipline(player, new ArrayList<>(), new ArrayList<>(), false);
 	}
 
-	public static boolean addPrimaryDiscipline(EntityPlayer player, Element element, boolean purgeExisting, EntityPlayer caller) {
+	public static boolean addMainDiscipline(EntityPlayer player, Element element, boolean purgeExisting, EntityPlayer caller) {
 		return addDiscipline(player, element, PRIMARY_DISCIPLINE_TAG, purgeExisting, caller);
 	}
 
-	public static boolean addSecondaryDiscipline(EntityPlayer player, Element element, boolean purgeExisting, EntityPlayer caller) {
+	public static boolean addSubDiscipline(EntityPlayer player, Element element, boolean purgeExisting, EntityPlayer caller) {
 		return addDiscipline(player, element, SECONDARY_DISCIPLINE_TAG, purgeExisting, caller);
 	}
 

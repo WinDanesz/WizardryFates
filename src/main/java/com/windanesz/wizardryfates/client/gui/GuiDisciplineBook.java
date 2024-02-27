@@ -2,6 +2,8 @@ package com.windanesz.wizardryfates.client.gui;
 
 import com.windanesz.wizardryfates.Settings;
 import com.windanesz.wizardryfates.WizardryFates;
+import com.windanesz.wizardryfates.handler.Discipline;
+import com.windanesz.wizardryfates.handler.DisciplineUtils;
 import com.windanesz.wizardryfates.handler.Utils;
 import com.windanesz.wizardryfates.integration.FatesASIntegration;
 import com.windanesz.wizardryfates.packet.FatesPacketHandler;
@@ -38,11 +40,10 @@ public class GuiDisciplineBook extends GuiScreen {
 		ySize = 256;
 
 		List<String> elements = Arrays.asList(Settings.settings.element_selection_list);
-		if (!FatesASIntegration.enabled() && elements.contains("ANCIENT")) {
+		if (!FatesASIntegration.enabled()) {
 			elements.remove("ANCIENT");
 		}
 		this.elementStrings = elements;
-
 	}
 
 	@Override
@@ -79,15 +80,20 @@ public class GuiDisciplineBook extends GuiScreen {
 			Minecraft.getMinecraft().player.closeScreen();
 		}
 
+		Discipline disciplines = DisciplineUtils.getPlayerDisciplines(mc.player);
+
 		for (int i = 0; i < elementStrings.size(); i++) {
 			try {
 				String element = elementStrings.get(i);
 				Element element1 = Utils.getElementFromName(element);
 				if (i < elementStrings.size() / 2) {
-					this.buttonList.add(new GuiButton(i + 1, xPos + 27, yPos + 30 * i, 100, 20, Utils.getElementWithStyleFormat(element1)));
-
+					GuiButton button = new GuiButton(i + 1, xPos + 27, yPos + 30 * i, 100, 20, Utils.getElementWithStyleFormat(element1));
+					button.enabled = !disciplines.primaryDisciplines.contains(element1);
+					this.buttonList.add(button);
 				} else {
-					this.buttonList.add(new GuiButton(i + 1, xPos + 160, yPos + 30 * i - (((elementStrings.size() / 2)) * 30), 100, 20, Utils.getElementWithStyleFormat(element1)));
+					GuiButton button = new GuiButton(i + 1, xPos + 160, yPos + 30 * i - (((elementStrings.size() / 2)) * 30), 100, 20, Utils.getElementWithStyleFormat(element1));
+					button.enabled = !disciplines.primaryDisciplines.contains(element1);
+					this.buttonList.add(button);
 				}
 
 			}
