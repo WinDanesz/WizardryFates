@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.2.1] - 2024-02-28
+### :sparkles: New Features
+- [`4f805bc`](https://github.com/WinDanesz/WizardryFates/commit/4f805bceeaf354316388798ce07bd5096392737e) - Added options to automatically assign certain disciplines to new players joining world. Fixes [#35](https://github.com/WinDanesz/WizardryFates/pull/35) *(commit by [@WinDanesz](https://github.com/WinDanesz))*
+
+
 ## [v2.2.0] - 2024-02-27
 ### :sparkles: New Features
 - [`4a54ba1`](https://github.com/WinDanesz/WizardryFates/commit/4a54ba136326099d76e623da1fcc622797459003) - Command /setdiscipline was renamed to /addmaindiscipline *(commit by [@WinDanesz](https://github.com/WinDanesz))*
@@ -13,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 [v2.2.0]: https://github.com/WinDanesz/WizardryFates/compare/v2.1.0...v2.2.0
+[v2.2.1]: https://github.com/WinDanesz/WizardryFates/compare/v2.2.0...v2.2.1
