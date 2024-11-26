@@ -15,6 +15,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IRarity;
@@ -73,9 +74,9 @@ public class ItemDisciplineScroll extends Item {
 
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, net.minecraft.client.util.ITooltipFlag flag) {
-		tooltip.add(Wizardry.proxy.translate("item." + getRegistryName() + ".tooltip"));
+		tooltip.add(I18n.format("item." + getRegistryName() + ".tooltip"));
 		if (!Settings.settings.discipline_scrolls_enabled) {
-			tooltip.add(Wizardry.proxy.translate("tooltip." + WizardryFates.MODID + ":disabled_item"));
+			tooltip.add(I18n.format("tooltip." + WizardryFates.MODID + ":disabled_item"));
 		}
 	}
 }

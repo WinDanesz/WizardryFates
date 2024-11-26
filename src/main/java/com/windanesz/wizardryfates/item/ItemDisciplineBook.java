@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -39,7 +40,7 @@ public class ItemDisciplineBook extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);
-		if (Settings.settings.discipline_scrolls_enabled) {
+		if (Settings.settings.book_of_fates_enabled) {
 
 			// OPEN GUI
 			player.openGui(WizardryFates.instance, FatesGuiHandler.BOOK_OF_FATES, world, 0, 0, 0);
@@ -61,9 +62,9 @@ public class ItemDisciplineBook extends Item {
 
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, net.minecraft.client.util.ITooltipFlag flag) {
-		tooltip.add(Wizardry.proxy.translate("item." + getRegistryName() + ".tooltip"));
+		tooltip.add(I18n.format("item." + getRegistryName() + ".tooltip"));
 		if (!Settings.settings.book_of_fates_enabled) {
-			tooltip.add(Wizardry.proxy.translate("tooltip." + WizardryFates.MODID + ":disabled_item"));
+			tooltip.add(I18n.format("tooltip." + WizardryFates.MODID + ":disabled_item"));
 		}
 	}
 

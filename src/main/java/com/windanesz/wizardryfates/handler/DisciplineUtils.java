@@ -21,7 +21,7 @@ import java.util.List;
 public class DisciplineUtils {
 	public static final IStoredVariable<NBTTagCompound> DISCIPLINE = IStoredVariable.StoredVariable.ofNBT("discipline", Persistence.ALWAYS).setSynced();
 
-	public static final List<String> ELEMENTS_STRINGS = new ArrayList();
+	public static final List<String> ELEMENTS_STRINGS = new ArrayList<>();
 
 	public static final String PRIMARY_DISCIPLINE_TAG = "primary_disciplines";
 	public static final String SECONDARY_DISCIPLINE_TAG = "secondary_disciplines";
@@ -217,14 +217,14 @@ public class DisciplineUtils {
 		if (data != null) {
 			NBTTagCompound disciplineTag = data.getVariable(DISCIPLINE);
 
-			if (disciplineTag != null) {
+			if (disciplineTag == null) {
 				disciplineTag = new NBTTagCompound();
-
-				disciplineTag.setBoolean(MAGICLESS_TAG, magicless);
-				data.setVariable(DISCIPLINE, disciplineTag);
-				data.sync();
-				return true;
 			}
+
+			disciplineTag.setBoolean(MAGICLESS_TAG, magicless);
+			data.setVariable(DISCIPLINE, disciplineTag);
+			data.sync();
+			return true;
 		}
 		return false;
 	}

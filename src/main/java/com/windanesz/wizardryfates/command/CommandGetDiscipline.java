@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CommandGetDiscipline extends CommandBase {
 
-	public static final String COMMAND = "getdisciplinss";
+	public static final String COMMAND = "getdiscipline";
 
 	public String getName() {
 		return COMMAND;

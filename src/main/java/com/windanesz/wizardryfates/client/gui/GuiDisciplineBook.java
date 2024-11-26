@@ -24,6 +24,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import org.lwjgl.input.Keyboard;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,7 +40,10 @@ public class GuiDisciplineBook extends GuiScreen {
 		xSize = 512;
 		ySize = 256;
 
-		List<String> elements = new ArrayList<>(Arrays.asList(Settings.settings.element_selection_list));
+		List<String> elements = new ArrayList<>();
+		for (String element : Settings.settings.element_selection_list) {
+			elements.add(element);
+		}
 		if (!FatesASIntegration.enabled()) {
 			elements.remove("ANCIENT");
 		}
@@ -121,7 +125,7 @@ public class GuiDisciplineBook extends GuiScreen {
 		if (button.id != CONFIRM) {
 			buttonList.get(CONFIRM).enabled = true;
 			int elementId = button.id - 1;
-			if (elementId <= elementStrings.size()) {
+			if (elementId >= 0 && elementId < elementStrings.size()) {
 				selection = Utils.getElementFromName(elementStrings.get(elementId));
 			}
 		}
