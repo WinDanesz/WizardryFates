@@ -39,7 +39,7 @@ public class GuiDisciplineBook extends GuiScreen {
 		xSize = 512;
 		ySize = 256;
 
-		List<String> elements = Arrays.asList(Settings.settings.element_selection_list);
+		List<String> elements = new ArrayList<>(Arrays.asList(Settings.settings.element_selection_list));
 		if (!FatesASIntegration.enabled()) {
 			elements.remove("ANCIENT");
 		}
