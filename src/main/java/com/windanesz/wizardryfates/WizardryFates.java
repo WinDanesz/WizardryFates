@@ -2,7 +2,7 @@ package com.windanesz.wizardryfates;
 
 import com.windanesz.wizardryfates.command.CommandAddMainDiscipline;
 import com.windanesz.wizardryfates.command.CommandAddSubDiscipline;
-import com.windanesz.wizardryfates.command.CommandGetDiscipline;
+import com.windanesz.wizardryfates.command.CommandGetDisciplines;
 import com.windanesz.wizardryfates.command.CommandRemoveMainDiscipline;
 import com.windanesz.wizardryfates.command.CommandRemoveSubDiscipline;
 import com.windanesz.wizardryfates.command.CommandSetMagicless;
@@ -71,7 +71,7 @@ public class WizardryFates {
 
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event) {
-		event.registerServerCommand(new CommandGetDiscipline());
+		event.registerServerCommand(new CommandGetDisciplines());
 		event.registerServerCommand(new CommandAddMainDiscipline());
 		event.registerServerCommand(new CommandAddSubDiscipline());
 		event.registerServerCommand(new CommandSetMagicless());
