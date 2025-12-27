@@ -10,6 +10,7 @@ gui.wizardryfates\:disciplines=Disciplines
 gui.wizardryfates\:main_discipline=Main Disciplines
 gui.wizardryfates\:sub_disciplines=Sub-Disciplines
 gui.wizardryfates\:confirm=Confirm
+gui.wizardryfates\:deselect_all=Deselect All
 
 # COMMANDS
 commands.wizardryfates\:removemaindiscipline.usage=/removemaindiscipline [player] <ICE/FIRE/EARTH/LIGHTNING/NECROMANCY/SORCERY/HEALING/ANCIENT>
@@ -92,6 +93,8 @@ item.wizardryfates\:scroll_oblivion.name=Scroll of Oblivion
 item.wizardryfates\:scroll_oblivion.tooltip=This powerful scroll erases any affinity for the elements of magic, resetting all of your disciplines
 item.wizardryfates\:book_of_fates.name=Book of Fates
 item.wizardryfates\:book_of_fates.tooltip=Allows you to choose your Discipline
+item.wizardryfates\:book_of_sub_disciplines.name=Book of Sub-Disciplines
+item.wizardryfates\:book_of_sub_disciplines.tooltip=Allows you to choose your Sub-Discipline
 
 # MISC
 itemGroup.wizardryfates=Wizardry Fates

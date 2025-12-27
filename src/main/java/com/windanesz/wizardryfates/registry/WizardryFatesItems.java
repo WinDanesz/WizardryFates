@@ -4,6 +4,7 @@ import com.windanesz.wizardryfates.WizardryFates;
 import com.windanesz.wizardryfates.item.ItemDisciplineBook;
 import com.windanesz.wizardryfates.item.ItemDisciplineScroll;
 import com.windanesz.wizardryfates.item.ItemFatesOblivionScroll;
+import com.windanesz.wizardryfates.item.ItemSubDisciplineBook;
 import com.windanesz.wizardryfates.item.ItemSubDisciplineScroll;
 import electroblob.wizardry.constants.Element;
 import electroblob.wizardry.registry.WizardryTabs;
@@ -30,6 +31,7 @@ public class WizardryFatesItems {
 	private static <T> T placeholder() { return null; }
 
 	public static final Item book_of_fates = placeholder();
+	public static final Item book_of_sub_disciplines = placeholder();
 
 	public static final Item scroll_earth = placeholder();
 	public static final Item scroll_necromancy = placeholder();
@@ -86,6 +88,7 @@ public class WizardryFatesItems {
 		IForgeRegistry<Item> registry = event.getRegistry();
 
 		registerItem(registry, "book_of_fates", new ItemDisciplineBook());
+		registerItem(registry, "book_of_sub_disciplines", new ItemSubDisciplineBook());
 
 		registerItem(registry, "scroll_earth", new ItemDisciplineScroll(Element.EARTH));
 		registerItem(registry, "scroll_necromancy", new ItemDisciplineScroll(Element.NECROMANCY));

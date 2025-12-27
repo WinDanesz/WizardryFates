@@ -103,7 +103,7 @@ public class DisciplineUtils {
 			return false;
 		}
 
-		if (typeTag.equals(PRIMARY_DISCIPLINE_TAG) && discipline.primaryDisciplines.size() == Settings.settings.max_main_discipline_count) {
+		if (typeTag.equals(PRIMARY_DISCIPLINE_TAG) && discipline.primaryDisciplines.size() >= Settings.settings.max_main_discipline_count && !purgeExisting) {
 			if (caller != null && !caller.world.isRemote) {
 				if (caller == player) {
 					caller.sendMessage(new TextComponentTranslation("message.wizardryfates:cannot_receive_more_primary_disciplines"));
@@ -112,7 +112,7 @@ public class DisciplineUtils {
 				}
 			}
 			return false;
-		} else if (typeTag.equals(SECONDARY_DISCIPLINE_TAG) && discipline.secondaryDisciplines.size() == Settings.settings.max_sub_discipline_count) {
+		} else if (typeTag.equals(SECONDARY_DISCIPLINE_TAG) && discipline.secondaryDisciplines.size() >= Settings.settings.max_sub_discipline_count && !purgeExisting) {
 			if (caller != null && !caller.world.isRemote) {
 				if (caller == player) {
 					caller.sendMessage(new TextComponentTranslation("message.wizardryfates:cannot_receive_more_sub_disciplines"));
@@ -143,7 +143,9 @@ public class DisciplineUtils {
 			}
 
 			if (!disciplines.contains(element)) {
-				disciplines.add(element);
+				if(!purgeExisting) {
+					disciplines.add(element);
+				}
 				NBTTagList list = new NBTTagList();
 				if (purgeExisting) {
 					NBTTagString elementString = new NBTTagString(element.getName());
@@ -229,7 +231,7 @@ public class DisciplineUtils {
 		return false;
 	}
 
-	public static boolean purgeDisciplines(EntityPlayer player) {
+	public static boolean purgeDisciplines(EntityPlayer player, String typeTag) {
 		Discipline discipline = DisciplineUtils.getPlayerDisciplines(player);
 		WizardData data = WizardData.get(player);
 
@@ -237,16 +239,20 @@ public class DisciplineUtils {
 			NBTTagCompound disciplineTag = data.getVariable(DISCIPLINE);
 
 			if (disciplineTag != null) {
-				disciplineTag = new NBTTagCompound();
+				disciplineTag.removeTag(typeTag);
 
-				disciplineTag.setBoolean(MAGICLESS_TAG, discipline.isMagiclessPlayer());
 				data.setVariable(DISCIPLINE, disciplineTag);
 				data.sync();
 				return true;
 			}
 		}
 		return false;
+	}
 
+	public static boolean purgeDisciplines(EntityPlayer player) {
+		purgeDisciplines(player, PRIMARY_DISCIPLINE_TAG);
+		purgeDisciplines(player, SECONDARY_DISCIPLINE_TAG);
+		return true;
 	}
 
 	public static boolean isTierSufficient(int setting, Tier tier) {

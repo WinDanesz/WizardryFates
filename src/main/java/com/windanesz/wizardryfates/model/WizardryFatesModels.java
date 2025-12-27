@@ -23,6 +23,7 @@ public final class WizardryFatesModels {
 		// ====================== Scrolls ======================
 
 		registerItemModel(WizardryFatesItems.book_of_fates);
+		registerItemModel(WizardryFatesItems.book_of_sub_disciplines);
 
 		registerItemModel(WizardryFatesItems.scroll_earth);
 		registerItemModel(WizardryFatesItems.scroll_necromancy);
