@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.3.0] - 2025-12-27
+### :sparkles: New Features
+- [`6a4ab1a`](https://github.com/WinDanesz/WizardryFates/commit/6a4ab1a69265c37474a9163de65d5fe28ba5f8f5) - Added book of subdisciplines *(commit by [@WinDanesz](https://github.com/WinDanesz))*
+
+### :bug: Bug Fixes
+- [`899bd9b`](https://github.com/WinDanesz/WizardryFates/commit/899bd9b382a481576bc5114d7ce58aff96b4599d) - Fix crash with Book of Fates *(commit by [@WinDanesz](https://github.com/WinDanesz))*
+- [`29cbb0c`](https://github.com/WinDanesz/WizardryFates/commit/29cbb0c05333f1817474c467c14dd2ddf7de1839) - Fix getdisciplines command *(commit by [@WinDanesz](https://github.com/WinDanesz))*
+- [`29c6aba`](https://github.com/WinDanesz/WizardryFates/commit/29c6aba059fce7b94c8fe35510c4df78e6f5ea5f) - Fix "Scroll Tier Cap of Non-Discipline Elements" blocking discipline element scrolls too *(commit by [@WinDanesz](https://github.com/WinDanesz))*
+
+
 ## [v2.2.1] - 2024-02-28
 ### :sparkles: New Features
 - [`4f805bc`](https://github.com/WinDanesz/WizardryFates/commit/4f805bceeaf354316388798ce07bd5096392737e) - Added options to automatically assign certain disciplines to new players joining world. Fixes [#35](https://github.com/WinDanesz/WizardryFates/pull/35) *(commit by [@WinDanesz](https://github.com/WinDanesz))*
@@ -19,3 +29,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v2.2.0]: https://github.com/WinDanesz/WizardryFates/compare/v2.1.0...v2.2.0
 [v2.2.1]: https://github.com/WinDanesz/WizardryFates/compare/v2.2.0...v2.2.1
+[v2.3.0]: https://github.com/WinDanesz/WizardryFates/compare/v2.2.2...v2.3.0
