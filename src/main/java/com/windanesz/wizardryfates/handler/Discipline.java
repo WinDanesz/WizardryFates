@@ -80,12 +80,21 @@ public class Discipline {
 
 	public boolean canPlayerUseThisScroll(Spell spell) {
 		Tier tier = spell.getTier();
+		Element element = spell.getElement();
 
 		if (isMagiclessPlayer()) {
 			return DisciplineUtils.isTierSufficient(Settings.settings.scroll_tier_limit_for_magicless_players, tier);
-		} else {
-			return DisciplineUtils.isTierSufficient(Settings.settings.scroll_tier_limit, tier);
 		}
+
+		if (primaryDisciplines.contains(element)) {
+			return true;
+		}
+		if (secondaryDisciplines.contains(element)) {
+			int effectiveTierLimit = Math.max(Settings.settings.sub_discipline_spellcasting_tier_limit, Settings.settings.scroll_tier_limit);
+			return DisciplineUtils.isTierSufficient(effectiveTierLimit, tier);
+		}
+
+		return DisciplineUtils.isTierSufficient(Settings.settings.scroll_tier_limit, tier);
 	}
 
 	private boolean canPlayerUseHeldWands() {
