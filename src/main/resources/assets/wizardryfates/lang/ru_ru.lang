@@ -1,0 +1,100 @@
+### Если вы обнаружите ошибки или неточности в этом переводе, пожалуйста, сообщите мне о них в комментариях, и тогда в следующей версии перевода они будут устранены. [ Heimdallr-1]
+
+#PARSE_ESCAPES
+
+gui.wizardryfates\:unknown_other_element=Кажется, у вас нет сродства к этому заклинанию. Пытаться использовать заклинание не получится без свитка.
+gui.wizardryfates\:spellcast_failed=Вы не можете использовать заклинание.
+gui.wizardryfates\:current_global_discipline_mode=Ваш общий режим дисциплины установлен на %1$s
+gui.wizardryfates\:commands_to_use=Вы можете использовать следующие команды при помощи этого режима: %1$s
+gui.wizardryfates\:cannot_add_discipline_to_magicless_player=У игрока без магии не может быть дисциплина!
+gui.wizardryfates\:discipline=Дисциплина
+gui.wizardryfates\:disciplines=Дисциплины
+gui.wizardryfates\:main_discipline=Основные дисциплины
+gui.wizardryfates\:sub_disciplines=Под-дисциплины
+gui.wizardryfates\:confirm=Подтвердить
+
+# COMMANDS
+commands.wizardryfates\:removemaindiscipline.usage=/removemaindiscipline [игрок] <ЛЁД/ОГОНЬ/ЗЕМЛЯ/ГРОЗА/НЕКРОМАНТИЯ/КОЛДОВСТВО/ИСЦЕЛЕНИЕ/ДРЕВНОСТЬ>
+commands.wizardryfates\:removemaindiscipline.execute=Устранил %2$s у %1$s
+commands.wizardryfates\:removemaindiscipline.failure=Не удалось устранить дисциплину у %1$s
+
+commands.wizardryfates\:addmaindiscipline.usage=/addmaindiscipline [игрок] <ЛЁД/ОГОНЬ/ЗЕМЛЯ/ГРОЗА/НЕКРОМАНТИЯ/КОЛДОВСТВО/ИСЦЕЛЕНИЕ/ДРЕВНОСТЬ>
+commands.wizardryfates\:addmaindiscipline.execute=Назначена %2$s %1$s
+commands.wizardryfates\:addmaindiscipline.failure=Не удалось назначить под-дисциплину для %1$s. Убедитесь, что она не была уже назначена.
+
+commands.wizardryfates\:addsubdiscipline.usage=/addsubdiscipline [игрок] <ЛЁД/ОГОНЬ/ЗЕМЛЯ/ГРОЗА/НЕКРОМАНТИЯ/КОЛДОВСТВО/ИСЦЕЛЕНИЕ/ДРЕВНОСТЬ>
+commands.wizardryfates\:addsubdiscipline.execute=Назначена %2$s в качестве Под-дисциплины %1$s.
+commands.wizardryfates\:addsubdiscipline.failure=Не удалось назначить под-дисциплину для %1$s. Убедитесь, что она не была уже назначена.
+commands.wizardryfates\:addsubdiscipline.incorrect_mode=Эта команда отключена по той причине, что ваш общий режим дисциплины НЕ установлен на 3 (Режим под-дисциплины)!
+
+commands.wizardryfates\:removesubdiscipline.failure=Не удалось устранить дисциплину, вероятно, игрок не обладает ею.
+commands.wizardryfates\:removesubdiscipline.usage=/removesubdiscipline [игрок] <ЛЁД/ОГОНЬ/ЗЕМЛЯ/ГРОЗА/НЕКРОМАНТИЯ/КОЛДОВСТВО/ИСЦЕЛЕНИЕ/ДРЕВНОСТЬ>
+commands.wizardryfates\:removesubdiscipline.execute=Устранил %2$s под-дисциплину у %1$s.
+
+commands.wizardryfates\:getdisciplines.usage=/getdisciplines [игрок]
+commands.wizardryfates\:getdisciplines.execute=У игрока %1$s есть следующие дисциплины: %2$s
+
+commands.wizardryfates\:setmagicless.execute_true=Лишил %1$s магии и навсегда забрал с него дисциплины.
+commands.wizardryfates\:setmagicless.execute_false=Дал %1$s возможность обрести дисциплины.
+commands.wizardryfates\:setmagicless.failure=Не удалось выполнить команду /setmagicless
+
+settings.wizardryfates\:server_settings=Настройки сервера
+
+# MESSAGE
+message.wizardryfates\:already_assigned_as_primary=Эта дисциплина уже назначена в качестве основной дисциплины!
+message.wizardryfates\:already_assigned_as_sub_discipline=Эта дисциплина уже назначена в качестве под-дисциплины!
+message.wizardryfates\:cannot_remove_unassigned_discipline=Невозможно устранить не назначенную дисциплину!
+message.wizardryfates\:cannot_add_more_primary_disciplines=%1$s уже достиг предела предела нескольких дисциплин!
+message.wizardryfates\:cannot_add_more_sub_disciplines=%1$s уже достиг предела предела под-дисциплины!
+message.wizardryfates\:cannot_receive_more_primary_disciplines=Вы уже достигнули предела нескольких дисциплин!
+message.wizardryfates\:cannot_receive_more_sub_disciplines=Вы уже достигли предела под-дисциплины!
+message.wizardryfates\:invalid_element_name=Недействительное название стихии
+message.wizardryfates\:discipline_granted=Теперь, вы обрели сродство к %1$s
+message.wizardryfates\:book_of_fates_cannot_override_discipline=Вы уже обрели дисциплину!
+message.wizardryfates\:sub_discipline_removed=Вы теперь не обладаете этой стихией в качестве под-дисциплины.
+
+# ITEMS
+item.wizardryfates\:scroll_earth.name=Свиток мага земли
+item.wizardryfates\:scroll_necromancy.name=Свиток некроманта
+item.wizardryfates\:scroll_healing.name=Свиток зназаря
+item.wizardryfates\:scroll_ice.name=Свиток мага льда
+item.wizardryfates\:scroll_fire.name=Свиток пироманта
+item.wizardryfates\:scroll_lightning.name=Свиток мага грозы
+item.wizardryfates\:scroll_sorcery.name=Свиток чародея
+item.wizardryfates\:scroll_ancient.name=Свиток древнего колдуна
+
+item.wizardryfates\:lesser_scroll_earth.name=Малый свиток земли
+item.wizardryfates\:lesser_scroll_necromancy.name=Малый свиток некромантии
+item.wizardryfates\:lesser_scroll_healing.name=Малый свиток исцеления
+item.wizardryfates\:lesser_scroll_ice.name=Малый свиток льда
+item.wizardryfates\:lesser_scroll_fire.name=Малый свиток огня
+item.wizardryfates\:lesser_scroll_lightning.name=Малый свиток грозы
+item.wizardryfates\:lesser_scroll_sorcery.name=Малый свиток колдовства
+item.wizardryfates\:lesser_scroll_ancient.name=Малый свиток древних
+
+item.wizardryfates\:lesser_scroll_earth.tooltip=Наделяет магией земли в качестве под-дисциплины.
+item.wizardryfates\:lesser_scroll_necromancy.tooltip=Наделяет некромантией в качестве под-дисциплины.
+item.wizardryfates\:lesser_scroll_healing.tooltip=Наделяет исцелением в качестве под-дисциплины.
+item.wizardryfates\:lesser_scroll_ice.tooltip=Наделяет магией льда в качестве под-дисциплины.
+item.wizardryfates\:lesser_scroll_fire.tooltip=Наделяет магией огня в качестве под-дисциплины.
+item.wizardryfates\:lesser_scroll_lightning.tooltip=Наделяет магией грозы в качестве под-дисциплины.
+item.wizardryfates\:lesser_scroll_sorcery.tooltip=Наделяет колдовством в качестве под-дисциплины.
+item.wizardryfates\:lesser_scroll_ancient.tooltip=Наделяет древней магией в качестве под-дисциплины.
+
+item.wizardryfates\:scroll_earth.tooltip=Наделяет магией земли в качестве дисциплины.
+item.wizardryfates\:scroll_necromancy.tooltip=Наделяет некромантией в качестве дисциплины.
+item.wizardryfates\:scroll_healing.tooltip=Наделяет исцелением в качестве дисциплины.
+item.wizardryfates\:scroll_ice.tooltip=Наделяет магию льда в качестве дисциплины.
+item.wizardryfates\:scroll_fire.tooltip=Наделяет магию огня в качестве дисциплины.
+item.wizardryfates\:scroll_lightning.tooltip=Наделяет маги грозы в качестве дисциплины.
+item.wizardryfates\:scroll_sorcery.tooltip=Наделяет колдовство в качестве дисциплины.
+item.wizardryfates\:scroll_ancient.tooltip=Наделяет древней магией в качестве дисциплины.
+
+item.wizardryfates\:scroll_oblivion.name=Свиток забвения
+item.wizardryfates\:scroll_oblivion.tooltip=Это могущественный свиток стирает любое сродство к магическим стихиям, сбрасывая с вас все дисциплины.
+item.wizardryfates\:book_of_fates.name=Книга судьбы
+item.wizardryfates\:book_of_fates.tooltip=Позволяет выбирать Дисциплину.
+
+# MISC
+itemGroup.wizardryfates=Wizardry Fates
+tooltip.wizardryfates\:disabled_item=Предмет отключен в конфигурации и не может использоваться.
